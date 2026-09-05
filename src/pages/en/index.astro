@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { SpecialtyGrid, Pillars, StatsBar, NewsCarousel, CTABanner } from '@/components/features';
+---
+
+<BaseLayout title="Home — Hôpital Saint-Claire">
+  <NavBar currentLocale="en" slot="header" />
+
+  <!-- Hero Section -->
+  <Hero
+    title="Medical excellence at the heart of you"
+    subtitle="Non-profit private hospital since 1923 — 45 specialties, 150+ expert physicians, 98% patient satisfaction"
+    stats={[
+      { value: '150+', label: 'Expert Physicians' },
+      { value: '45', label: 'Specialties' },
+      { value: '98%', label: 'Satisfaction' },
+      { value: '1923', label: 'Founded' },
+    ]}
+    ctaPrimary={{ label: 'Book Appointment Online', href: '/en/rdv' }}
+    ctaSecondary={{ label: 'Emergency: +33 1 23 45 67 89', href: '/en/urgences' }}
+  />
+
+  <!-- Pillars / Why Choose Us -->
+  <Pillars
+    title="Why Choose Hôpital Saint-Claire?"
+    subtitle="Three pillars that have made our difference for over a century"
+  />
+
+  <!-- Specialties Grid -->
+  <SpecialtyGrid limit={12} showViewAll={true} viewAllHref="/en/specialites" />
+
+  <!-- Stats Bar -->
+  <StatsBar variant="heal" />
+
+  <!-- News Carousel -->
+  <NewsCarousel limit={3} showViewAll={true} viewAllHref="/en/actualites" />
+
+  <!-- CTA Banner -->
+  <CTABanner
+    title="Need a medical opinion?"
+    description="Our team of specialists is available 24/7. Teleconsultation, in-person appointment, or emergency: we are here for you."
+    ctaPrimary={{ label: 'Contact a Doctor', href: '/en/contact' }}
+    ctaSecondary={{ label: 'Book Appointment', href: '/en/rdv' }}
+    icon="heartHandshake"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

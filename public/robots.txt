@@ -1,0 +1,32 @@
+# Hôpital Saint-Claire — robots.txt
+# https://hopital-saint-claire.fr
+
+# Global rules
+User-agent: *
+Crawl-delay: 10
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /portail/
+Disallow: /members/
+Disallow: /*?preview=
+Disallow: /fr/rdv
+Disallow: /fr/portail
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /404
+Disallow: /search
+
+# Sitemaps
+Sitemap: https://hopital-saint-claire.fr/sitemap-index.xml
+
+# Social
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

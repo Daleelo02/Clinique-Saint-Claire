@@ -1,0 +1,191 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Patients Internationaux — Hôpital Saint-Claire" description="Accueil patients internationaux : coordination médicale, visa, hébergement, interprariat. Hôpital Saint-Claire, référence pour la patientèle étrangère.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Patients Internationaux"
+    subtitle="Un accompagnement sur-mesure pour votre venue en France : coordination médicale, visa, hébergement, interprariat"
+    ctaPrimary={{ label: 'Demander un devis', href: '/fr/contact?subject=international' }}
+    ctaSecondary={{ label: 'Nous contacter', href: 'tel:+33123456789' }}
+    stats={[
+      { value: '50+', label: 'Pays accueillis' },
+      { value: '15', label: 'Langues parlées' },
+      { value: '48h', label: 'Réponse devis' },
+      { value: '24/7', label: 'Assistance' },
+    ]}
+  />
+
+  <!-- Services -->
+  <section className="py-16 lg:py-20 bg-snow" id="services">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Nos Services Dédiés</h2>
+        <p className="text-body-lg text-ink-muted">Une prise en charge complète, de la préparation à votre retour</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: 'file-text', title: 'Coordination Médicale', desc: 'Médecin référent unique, collecte dossier, avis spécialisés, plan de soins' },
+          { icon: 'plane', title: 'Visa & Formalités', desc: 'Lettre d\'invitation médicale, assistance visa médical, coordination ambassade' },
+          { icon: 'home', title: 'Hébergement', desc: 'Hôtels partenaires, appartements médicalisés, navettes aéroport/hôpital' },
+          { icon: 'languages', title: 'Interprariat', desc: 'Interprètes médicaux 15+ langues, documents traduits, médiateurs culturels' },
+        ].map((service, index) => (
+          <div key={service.title} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[service.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{service.title}</h3>
+            <p className="text-body-sm text-ink-muted">{service.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="processus">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Votre Parcours en 4 Étapes</h2>
+        <p className="text-body-lg text-ink-muted">Simple, transparent, sécurisé</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Premier Contact', desc: 'Vous nous envoyez votre dossier (comptes-rendus, imagerie, ordonnances) via notre formulaire sécurisé ou par email.' },
+          { step: '2', title: 'Avis & Devis', desc: 'Nos experts étudient votre dossier sous 48h. Vous recevez un avis médical, un plan de soins et un devis détaillé.' },
+          { step: '3', title: 'Organisation', desc: 'Après validation, nous organisons : visa, voyage, hébergement, interprariat, rendez-vous médicaux.' },
+          { step: '4', title: 'Séjour & Suivi', desc: 'Accueil à l\'aéroport, accompagnement pendant tout le séjour, compte-rendu final, suivi post-retour.' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative group">
+            {index < 3 && (
+              <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20" style={{ transform: 'translateX(50%)' }} aria-hidden="true" />
+            )}
+            <div className="text-center p-6 relative">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">
+                {item.step}
+              </div>
+              <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{item.title}</h3>
+              <p className="text-body-sm text-ink-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties for international -->
+  <section className="py-16 lg:py-20 bg-snow" id="specialites">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Spécialités les Plus Demandées</h2>
+        <p className="text-body-lg text-ink-muted">Expertise reconnue internationalement</p>
+      </header>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { name: 'Chirurgie Cardiaque', desc: 'Pontages, valves, mini-invasive', icon: 'heart-pulse' },
+          { name: 'Neurochirurgie', desc: 'Tumeurs cérébrales, colonne, épilepsie', icon: 'brain' },
+          { name: 'Oncologie', desc: 'Cancers complexes, immunothérapie', icon: 'shield-check' },
+          { name: 'Orthopédie', desc: 'Prothèses, révision, sport', icon: 'bone' },
+          { name: 'FIV & Fertilité', desc: 'PMA, don d\'ovocytes, préservation', icon: 'baby' },
+          { name: 'Check-up Premium', desc: 'Bilan complet 48h, prévention', icon: 'clipboard-check' },
+          { name: 'Chirurgie Esthétique', desc: 'Reconstructrice & esthétique', icon: 'heart-handshake' },
+          { name: 'Deuxième Avis', desc: 'Expertise dossier à distance', icon: 'search' },
+        ].map((spec, index) => (
+          <a href={`/fr/specialites/${spec.name.toLowerCase().replace(/\s+/g, '-')}`} key={spec.name} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 50}ms` }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[spec.icon] className="w-6 h-6 text-heal" />
+            </div>
+            <h3 className="font-semibold text-heading-sm text-ink mb-2 group-hover:text-heal transition-colors">{spec.name}</h3>
+            <p className="text-body-sm text-ink-muted">{spec.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Info -->
+  <section className="py-16 lg:py-20 bg-ink text-snow" id="infos-pratiques">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Informations Pratiques</h2>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="bg-snow/5 rounded-2xl p-6 border border-snow/10">
+          <h3 className="font-display font-semibold text-heading-md text-snow mb-4 flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons.creditCard className="w-5 h-5" />
+            </div>
+            Paiement & Assurance
+          </h3>
+          <ul className="space-y-3 text-body-sm text-snow/70">
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Devis détaillé avant toute intervention</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Virement international, carte, espèces</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Partenariats assurances internationales</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Facturation conforme normes pays d'origine</li>
+          </ul>
+        </div>
+
+        <div className="bg-snow/5 rounded-2xl p-6 border border-snow/10">
+          <h3 className="font-display font-semibold text-heading-md text-snow mb-4 flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons.shield className="w-5 h-5" />
+            </div>
+            Garanties & Sécurité
+          </h3>
+          <ul className="space-y-3 text-body-sm text-snow/70">
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Hôpital certifié HAS & Joint Commission</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Assurance responsabilité civile médicale</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Dossier médical bilingue (FR/EN) + votre langue</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Confidentialité RGPD & secret médical</li>
+          </ul>
+        </div>
+
+        <div className="bg-snow/5 rounded-2xl p-6 border border-snow/10">
+          <h3 className="font-display font-semibold text-heading-md text-snow mb-4 flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons.helpCircle className="w-5 h-5" />
+            </div>
+            Questions Fréquentes
+          </h3>
+          <ul className="space-y-3 text-body-sm text-snow/70">
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Pas d'avance de frais pour urgences vitales</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Accompagnant autorisé (1 pers. offerte)</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Régimes alimentaires respectés (halal, casher, etc.)</li>
+            <li className="flex items-center gap-2"><svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Espace de prière & aumônerie multi-confessions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section className="py-16 lg:py-20 bg-heal text-snow">
+    <div className="container-main text-center">
+      <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Prêt à nous confier votre santé ?</h2>
+      <p className="text-body-lg text-snow/80 mb-8 max-w-2xl mx-auto">
+        Remplissez notre formulaire sécurisé. Notre équipe internationale vous répond sous 48h avec un avis médical et un devis personnalisé.
+      </p>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/fr/contact?subject=international" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-label font-medium text-ink bg-snow rounded-xl hover:bg-snow/90 transition-colors">
+          Demander mon devis gratuit
+          <icons.arrowRight className="w-5 h-5" />
+        </a>
+        <a href="tel:+33123456789" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-label font-medium text-heal bg-snow/20 rounded-xl hover:bg-snow/30 transition-colors">
+          <icons.phone className="w-5 h-5" />
+          +33 1 23 45 67 89
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,198 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Centre de Check-up & Prévention — Hôpital Saint-Claire" description="Bilans de santé personnalisés : Essentiel, Premium, Executive, Senior. Prévention, dépistage, accompagnement sur-mesure.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Centre de Check-up & Prévention"
+    subtitle="Bilans de santé sur-mesure pour anticiper, dépister et préserver votre capital santé"
+    ctaPrimary={{ label: 'Réserver mon bilan', href: '/fr/rdv?specialty=checkup' }}
+    ctaSecondary={{ label: 'Télécharger la brochure', href: '/brochure-checkup.pdf' }}
+    stats={[
+      { value: '8', label: 'Formules' },
+      { value: '48h', label: 'Résultats' },
+      { value: '100+', label: 'Paramètres' },
+      { value: '95%', label: 'Satisfaction' },
+    ]}
+  />
+
+  <!-- Formulas -->
+  <section className="py-16 lg:py-20 bg-snow" id="formules">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Nos Formules de Check-up</h2>
+        <p className="text-body-lg text-ink-muted">Adaptées à votre âge, votre sexe, vos antécédents et votre mode de vie</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {[
+          { name: 'Essentiel', subtitle: 'Le bilan de base', price: 'À partir de 350€', features: ['Biologie complète (30+ params)', 'Consultation médicale 30min', 'ECG au repos', 'Rapport détaillé', 'Conseils prévention'], icon: 'clipboard-check', color: 'heal', popular: false },
+          { name: 'Premium', subtitle: 'Le plus complet', price: 'À partir de 680€', features: ['Tout Essentiel +', 'Imagerie ciblée', 'Dépistages cancérologiques', 'Épreuve d\'effort', 'Consultation 45min', 'Suivi 6 mois'], icon: 'star', color: 'gold', popular: true },
+          { name: 'Executive', subtitle: 'Dirigeants & Actifs', price: 'À partir de 950€', features: ['Tout Premium +', 'Créneaux horaires étendus', 'Espace privatif', 'Déjeuner diététique', 'Coaching santé 1 an', 'Médecin référent dédié'], icon: 'briefcase', color: 'ink', popular: false },
+          { name: 'Senior', subtitle: '60 ans et +', price: 'À partir de 520€', features: ['Tout Essentiel +', 'Bilan mémoire & marche', 'Densitométrie osseuse', 'Bilan chute & vision', 'Vaccinations à jour', 'Liaison médecin traitant'], icon: 'users', color: 'heal', popular: false },
+        ].map((formula, index) => (
+          <article key={formula.name} className={`relative bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal ${formula.popular ? 'border-2 border-heal' : ''}`} style={{ animationDelay: `${index * 100}ms` }}>
+            {formula.popular && (
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-caption font-medium text-snow bg-heal rounded-full">
+                  <icons.star className="w-3.5 h-3.5" /> Le plus choisi
+                </span>
+              </div>
+            )}
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: `rgba(${formula.color === 'heal' ? '0, 163, 161' : formula.color === 'gold' ? '200, 169, 81' : '13, 27, 42'}, 0.1)` }}>
+              <icons[formula.icon] className="w-7 h-7" style={{ color: formula.color === 'heal' ? '#00A3A1' : formula.color === 'gold' ? '#C8A951' : '#0D1B2A' }} />
+            </div>
+            <h3 className="font-display font-bold text-heading-md text-ink mb-1">{formula.name}</h3>
+            <p className="text-body-sm text-ink-muted mb-3">{formula.subtitle}</p>
+            <p className="font-semibold text-heading-sm text-ink mb-4">{formula.price}</p>
+            <ul className="space-y-2 mb-6">
+              {formula.features.map(f => (
+                <li key={f} className="flex items-center gap-2 text-body-sm text-ink">
+                  <svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href={`/fr/rdv?specialty=checkup&formula=${formula.name.toLowerCase()}`} className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-label font-medium rounded-lg transition-colors"
+              style={{
+                backgroundColor: formula.popular ? '#00A3A1' : 'rgba(0, 163, 161, 0.1)',
+                color: formula.popular ? '#FFFFFF' : '#00A3A1'
+              }}
+            >
+              Choisir cette formule
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div className="text-center">
+        <a href="/fr/rdv?specialty=checkup" className="inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+          Voir toutes les formules (Femme, Homme, Sportif, Voyage...)
+          <icons.arrowRight className="w-5 h-5 transition-transform hover:translate-x-1" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="deroulement">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Comment se déroule votre check-up ?</h2>
+        <p className="text-body-lg text-ink-muted">Un parcours fluide en une demi-journée</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Questionnaire Pré-Check-up', desc: 'En ligne 48h avant : antécédents, habitudes, objectifs. Pré-rempli par votre médecin traitant si souhaité.' },
+          { step: '2', title: 'Accueil & Préparation', desc: 'Espace dédié, jeûne respecté, infirmier(e) référent(e), explications du déroulement.' },
+          { step: '3', title: 'Examens & Explorations', desc: 'Biologie, imagerie, épreuves fonctionnelles selon votre formule. Parcours optimisé sans attente.' },
+          { step: '4', title: 'Consultation & Synthèse', desc: 'Médecin du check-up : analyse résultats, dépistages, plan d\'action personnalisé, remise rapport.' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative group">
+            {index < 3 && (
+              <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20" style={{ transform: 'translateX(50%)' }} aria-hidden="true" />
+            )}
+            <div className="text-center p-6 relative">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">
+                {item.step}
+              </div>
+              <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{item.title}</h3>
+              <p className="text-body-sm text-ink-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section className="py-16 lg:py-20 bg-snow" id="inclus">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Ce qui est inclus dans chaque check-up</h2>
+        <p className="text-body-lg text-ink-muted">Une prise en charge complète, sans surprise</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Médical', items: ['Questionnaire santé détaillé', 'Consultation médecin 30-60min', 'Examen clinique complet', 'Mesure tension, IMC, tour de taille', 'Écoute cardiaque & pulmonaire', 'Examen neurologique ciblé'] },
+          { title: 'Biologique (selon formule)', items: ['Hémogramme + formule', 'Glycémie, HbA1c, Lipidogramme', 'Fonction rénale & hépatique', 'Bilan thyroïdien (TSH)', 'Marqueurs inflammatoires (CRP)', 'Ferritine, Vitamine D, B12', 'Marqueurs tumoraux (selon âge/sexe)', 'Coagulation, Groupe sanguin'] },
+          { title: 'Imagerie & Fonctionnel', items: ['ECG au repos (toutes formules)', 'Épreuve d\'effort (Premium+)', 'Échocardiographie (Premium+)', 'Échographie abdominale (Premium+)', 'Densitométrie (Senior)', 'Mammographie / PSA (âge/sexe)', 'Coloscopie / Fibroscopie (si indiqué)', 'Scanner faible dose (Executive)'] },
+        ].map((col, index) => (
+          <div key={col.title} className="bg-surface rounded-2xl shadow-card p-6" style={{ animationDelay: `${index * 100}ms` }}>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-4 flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+                <icons.clipboardCheck className="w-5 h-5" />
+              </div>
+              {col.title}
+            </h3>
+            <ul className="space-y-2">
+              {col.items.map(item => (
+                <li key={item} className="flex items-center gap-2 text-body-sm text-ink-muted">
+                  <svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- After check-up -->
+  <section className="py-16 lg:py-20 bg-ink text-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Et après votre check-up ?</h2>
+          <p className="text-body-lg text-snow/70 mb-6">
+            Votre rapport détaillé vous est remis en main propre et envoyé par email sécurisé sous 48h.
+          </p>
+          <ul className="space-y-4 mb-8">
+            {[
+              'Rapport médical structuré avec tous les résultats',
+              'Interprétation claire : normal / à surveiller / à traiter',
+              'Plan d\'action personnalisé (suivi, traitements, hygiène de vie)',
+              'Liaison avec votre médecin traitant (avec votre accord)',
+              'Accès portail patient : résultats, historique, rappels',
+              'Rappels automatiques pour vos prochains dépistages',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-3 text-body text-snow/80">
+                <svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/fr/rdv?specialty=checkup" className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-ink bg-snow rounded-xl hover:bg-snow/90 transition-colors">
+            Réserver mon bilan
+            <icons.arrowRight className="w-5 h-5" />
+          </a>
+        </div>
+        <div className="aspect-[4/3] rounded-2xl bg-snow/10 flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.fileText className="w-24 h-24 mx-auto mb-4 text-heal" />
+            <p className="text-body-lg text-snow/70">Rapport numérique sécurisé</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Prêt à prendre soin de vous ?"
+    description="Choisissez votre formule et réservez votre créneau en ligne. Notre équipe vous rappelle pour confirmer."
+    ctaPrimary={{ label: 'Réserver mon check-up', href: '/fr/rdv?specialty=checkup' }}
+    ctaSecondary={{ label: 'Nous contacter', href: '/fr/contact' }}
+    variant="heal"
+    icon="heartHandshake"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

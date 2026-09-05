@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Vos Droits — Hôpital Saint-Claire" description="Droits des patients : consentement, dossier médical, confidentialité, personne de confiance, médiateur. Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Vos Droits en Tant que Patient"
+    subtitle="Vous êtes informé(e) de vos droits et de leur application concrète à l'Hôpital Saint-Claire"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <!-- Rights Grid -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {[
+          { icon: 'eye', title: 'Droit à l\'Information', desc: 'Accès à une information claire sur votre état de santé, les traitements proposés, leurs bénéfices et risques. Le médecin s\'assure que vous avez compris avant de recueillir votre consentement.', points: ['Information sur état de santé', 'Explication des examens et traitements', 'Estimation des coûts avant soins', 'Possibilité de demander un 2ème avis'] },
+          { icon: 'fingerprint', title: 'Consentement Libre & Éclairé', desc: 'Aucun acte médical ne peut être pratiqué sans votre consentement. Vous pouvez le retirer à tout moment. Le consentement est présumé pour les urgences.', points: ['Consentement écrit pour les actes invasifs', 'Droit de refuser un traitement', 'Retrait de consentement à tout moment', 'Mineur : consentement de l\'autorité parentale'] },
+          { icon: 'folder-open', title: 'Accès à Votre Dossier Médical', desc: 'Vous pouvez consulter et obtenir copie de votre dossier médical. Communication sous 48h pour les informations récentes, 8 jours pour l\'ensemble.', points: ['Consultation gratuite sur place', 'Copie (frais de reproduction) ou email', 'Accès portail patient 24/7', 'Transmission à un autre praticien'] },
+          { icon: 'lock', title: 'Confidentialité & Secret Médical', desc: 'Vos informations de santé sont protégées. Le secret médical s\'impose à toute l\'équipe soignante. Une charte de confidentialité régit le traitement de vos données.', points: ['Secret médical étendu à tous les soignants', 'Vie privée respectée en chambre et en consultation', 'Données hébergées en France (HDS)', 'RGPD : traitement et suppression'] },
+          { icon: 'users', title: 'Personne de Confiance & Directives', desc: 'Désignez une personne de confiance pour vous accompagner et porter vos volontés si vous ne pouvez plus vous exprimer. Rédigez vos directives anticipées.', points: ['Désignation sur support (formulaire)', 'Consultation pour décisions importantes', 'Directives anticipées prises en compte', 'Révocable à tout moment'] },
+          { icon: 'scale', title: 'Médiation & Réclamations', desc: 'Toute insatisfaction peut être signalée à la Commission des Usagers (CDU) ou au médiateur. Réponse sous 30 jours, sans préjudice sur les soins.', points: ['Signalement libre au médiateur', 'Commission des Usagers (CDU)', 'Réponse écrite sous 30 jours', 'Aucune conséquence sur la prise en charge'] },
+        ].map((right, index) => (
+          <article key={right.title} className="bg-surface rounded-2xl shadow-card p-6 lg:p-8 hover:shadow-card-hover transition-all duration-normal" style={{ animationDelay: `${index * 80}ms` }}>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+                <icons[right.icon] className="w-7 h-7 text-heal" />
+              </div>
+              <h2 className="font-display font-semibold text-heading-lg text-ink">{right.title}</h2>
+            </div>
+            <p className="text-body-sm text-ink-muted mb-4">{right.desc}</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {right.points.map(p => (
+                <li key={p} className="flex items-start gap-2 text-caption text-ink">
+                  <svg className="w-4 h-4 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Charte patient -->
+  <section className="py-16 lg:py-20 bg-ink text-snow">
+    <div className="container-main">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="font-display font-bold text-heading-xl text-snow mb-6">La Charte du Patient Hospitalisé</h2>
+        <p className="text-body-lg text-snow/70 mb-8 leading-relaxed">
+          Cette charte, affichée dans chaque chambre, rappelle les droits fondamentaux du patient hospitalisé.
+          Elle est remise à chaque admission et disponible en français, anglais, arabe et portugais.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {['Français', 'English', 'العربية', 'Português'].map(lang => (
+            <a key={lang} href="#download" className="inline-flex items-center gap-2 px-5 py-3 text-label font-medium bg-snow/10 border border-snow/20 rounded-xl hover:bg-snow/20 transition-colors">
+              <icons.download className="w-5 h-5" />
+              {lang}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Une question sur vos droits ?"
+    description="Notre service relation usagers vous répond du lundi au vendredi, 8h-18h."
+    ctaPrimary={{ label: 'Nous contacter', href: '/fr/contact' }}
+    ctaSecondary={{ label: 'Voir les associations', href: '/fr/patients/associations' }}
+    variant="heal"
+    icon="scale"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

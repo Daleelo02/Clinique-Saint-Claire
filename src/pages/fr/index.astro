@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { SpecialtyGrid, Pillars, StatsBar, NewsCarousel, CTABanner } from '@/components/features';
+---
+
+<BaseLayout title="Accueil — Hôpital Saint-Claire">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <!-- Hero Section -->
+  <Hero
+    title="L'excellence médicale au cœur de vous"
+    subtitle="Hôpital privé à but non lucratif depuis 1923 — 45 spécialités, 150+ médecins experts, 98% de satisfaction patient"
+    stats={[
+      { value: '150+', label: 'Médecins Experts' },
+      { value: '45', label: 'Spécialités' },
+      { value: '98%', label: 'Satisfaction' },
+      { value: '1923', label: 'Fondation' },
+    ]}
+    ctaPrimary={{ label: 'Prendre rendez-vous en ligne', href: '/fr/rdv' }}
+    ctaSecondary={{ label: 'Urgences : 01 23 45 67 89', href: '/fr/urgences' }}
+  />
+
+  <!-- Pillars / Why Choose Us -->
+  <Pillars
+    title="Pourquoi Choisir Hôpital Saint-Claire ?"
+    subtitle="Trois piliers qui font notre différence depuis plus d'un siècle"
+  />
+
+  <!-- Specialties Grid -->
+  <SpecialtyGrid limit={12} showViewAll={true} viewAllHref="/fr/specialites" />
+
+  <!-- Stats Bar (alternative design) -->
+  <StatsBar variant="heal" />
+
+  <!-- News Carousel -->
+  <NewsCarousel limit={3} showViewAll={true} viewAllHref="/fr/actualites" />
+
+  <!-- CTA Banner -->
+  <CTABanner
+    title="Besoin d'un avis médical ?"
+    description="Notre équipe de spécialistes vous répond 24/7. Téléconsultation, rendez-vous physique ou urgence : nous sommes là pour vous."
+    ctaPrimary={{ label: 'Contacter un médecin', href: '/fr/contact' }}
+    ctaSecondary={{ label: 'Prendre rendez-vous', href: '/fr/rdv' }}
+    icon="heartHandshake"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

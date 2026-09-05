@@ -1,0 +1,161 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Accessibilité — Hôpital Saint-Claire" description="Déclaration d'accessibilité RGAA, conformité, contacts, améliorations. Hôpital Saint-Claire s'engage pour un web inclusif.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Accessibilité Numérique"
+    subtitle="Notre engagement pour un site accessible à tous, conforme au RGAA 4.1.2"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main max-w-4xl">
+      <article className="prose prose-ink max-w-none">
+        <div className="bg-heal-light/50 rounded-2xl p-6 mb-10">
+          <h2 className="font-display font-bold text-heading-lg text-ink mb-3 flex items-center gap-2">
+            <icons.shieldCheck className="w-7 h-7 text-heal" />
+            Statut de Conformité
+          </h2>
+          <p className="text-body-lg text-ink-muted">
+            <strong>Partiellement conforme</strong> au RGAA 4.1.2 — Score estimé : <strong>85/100</strong>
+          </p>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">1. Résultats des Tests</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-heal-light text-heal">
+                <th className="p-4 text-left text-label">Critère RGAA</th>
+                <th className="p-4 text-center text-label">Statut</th>
+                <th className="p-4 text-left text-label">Détails</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-cloud">
+              {[
+                ['1.1 Images ont alternative textuelle', 'Conforme', 'Toutes les images décoratives ont alt="", les informatives ont description'],
+                ['1.2 Cadres ont titre', 'Conforme', 'Aucun iframe sans titre'],
+                ['2.1 Couleurs ne sont pas seul vecteur d\'info', 'Conforme', 'Icônes + texte, patterns, formes'],
+                ['2.2 Contraste ≥ 4.5:1 (texte) / 3:1 (UI)', 'Conforme', 'Palette validée : ink/snow = 12.6:1, heal/snow = 4.8:1'],
+                ['3.1 Feuilles de style séparées', 'Conforme', 'CSS dans fichiers dédiés, pas de style inline'],
+                ['3.2 Ordre de lecture cohérent', 'Conforme', 'HTML sémantique, pas de CSS order'],
+                ['4.1 Langue par défaut', 'Conforme', 'lang="fr" sur html, changements balisés'],
+                ['4.2 Changement de langue signalé', 'Conforme', 'Attributs lang sur éléments concernés'],
+                ['5.1 Titres pertinents', 'Conforme', 'Hiérarchie H1-H6 respectée'],
+                ['5.2 Listes correctement structurées', 'Conforme', 'ul/ol/dl sémantiques'],
+                ['6.1 Liens explicites', 'Conforme', 'Pas de "cliquez ici", contexte suffisant'],
+                ['7.1 Scripts accessibles', 'Partiel', 'Formulaires React accessibles, quelques composants tiers à auditer'],
+                ['8.1 Éléments formulaires étiquetés', 'Conforme', 'label + for/id, aria-describedby, aria-invalid'],
+                ['8.2 Regroupements cohérents', 'Conforme', 'fieldset/legend pour groupes radio/checkbox'],
+                ['9.1 Titre page pertinent', 'Conforme', 'title unique par page + h1'],
+                ['10.1 Navigation cohérente', 'Conforme', 'Navbar, fil d\'Ariane, plan du site'],
+                ['11.1 Contraste focus visible', 'Conforme', 'ring-2 ring-heal ring-offset-2 sur tous focusables'],
+                ['12.1 Pas de contenu clignotant >3x/s', 'Conforme', 'Aucune animation clignotante'],
+                ['13.1 Zoom texte 200% sans perte', 'Conforme', 'Responsive, unités relatives, pas de overflow'],
+              ].map(([critere, statut, detail]) => (
+                <tr key={critere} className={statut === 'Partiel' ? 'bg-vital-light/30' : ''}>
+                  <td className="p-4 text-body-sm text-ink">{critere}</td>
+                  <td className="p-4 text-center">
+                    <span className={`inline-flex items-center justify-center px-3 py-1 text-caption font-medium rounded-full ${statut === 'Conforme' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                      {statut}
+                    </span>
+                  </td>
+                  <td className="p-4 text-body-sm text-ink-muted">{detail}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">2. Non-Conformités & Dérogations</h2>
+        <ul className="space-y-4 mb-8">
+          <li className="bg-vital-light/50 border-l-4 border-vital p-4 rounded-r-xl">
+            <h3 className="font-semibold text-heading-sm text-ink mb-2">Carrousel d'actualités (Critère 7.1)</h3>
+            <p className="text-body-sm text-ink-muted">Navigation au clavier perfectible sur le composant NewsCarousel. Correction prévue Q1 2025.</p>
+          </li>
+          <li className="bg-vital-light/50 border-l-4 border-vital p-4 rounded-r-xl">
+            <h3 className="font-semibold text-heading-sm text-ink mb-2">Cartes interactives médecins (Critère 7.1)</h3>
+            <p className="text-body-sm text-ink-muted">Filtrage JS côté client : l'état des filtres n'est pas annoncé aux lecteurs d'écran. ARIA live region à ajouter.</p>
+          </li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">3. Fonctionnalités d'Accessibilité</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {[
+            ['Navigation clavier', 'Tab / Shift+Tab pour naviguer, Enter/Espace pour activer, Échap pour fermer'],
+            ['Liens d\'évitement', 'Lien "Aller au contenu principal" en tout début de page (visible au focus)'],
+            ['Structure sémantique', 'header, nav, main, aside, footer, article, section, heading hierarchy'],
+            ['Contraste élevé', 'Mode contraste forcé respecté (prefers-contrast: more)'],
+            ['Mouvement réduit', 'Animations désactivées si prefers-reduced-motion: reduce'],
+            ['Zoom navigateur', 'Layout fluide, pas de contenu tronqué à 200%, 400%'],
+            ['Lecteurs d\'écran', 'ARIA labels, live regions, roles, landmarks testés NVDA/JAWS/VoiceOver'],
+            ['Langues', 'FR/EN/AR/PT avec hreflang, dir="rtl" pour arabe, police adaptée'],
+          ].map(([title, desc]) => (
+            <div key={title} className="bg-surface rounded-xl p-5 border border-cloud">
+              <h3 className="font-semibold text-heading-sm text-ink mb-2 flex items-center gap-2">
+                <icons.check className="w-5 h-5 text-heal" />
+                {title}
+              </h3>
+              <p className="text-body-sm text-ink-muted">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">4. Outils de Test Utilisés</h2>
+        <ul className="space-y-2 mb-8">
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>WAVE (WebAIM) — audit automatisé</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>axe DevTools — audit automatisé avancé</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Lighthouse (Accessibility) — score 98/100</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>NVDA (Windows) + VoiceOver (macOS/iOS) — test manuel</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Clavier seul — navigation complète sans souris</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Zoom 200%/400% — test responsive</li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">5. Contact & Signalement</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Vous rencontrez une difficulté d'accès ? Signalez-la à notre référent accessibilité :
+        </p>
+        <dl className="space-y-3 mb-8">
+          <div className="flex items-center gap-3 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Référent accessibilité :</dt>
+            <dd className="text-body-sm text-ink-muted">Mme Sophie Dubois — <a href="mailto:accessibilite@saint-claire.fr" className="text-heal hover:underline">accessibilite@saint-claire.fr</a></dd>
+          </div>
+          <div className="flex items-center gap-3 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Téléphone :</dt>
+            <dd className="text-body-sm text-ink-muted"><a href="tel:0123456740" className="text-heal hover:underline">01 23 45 67 40</a></dd>
+          </div>
+          <div className="flex items-center gap-3 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Courrier :</dt>
+            <dd className="text-body-sm text-ink-muted">Référent Accessibilité — Hôpital Saint-Claire — 45 Avenue de la République, 75011 Saint-Claire</dd>
+          </div>
+        </dl>
+
+        <p className="text-body text-ink-muted">
+          En l'absence de réponse satisfaisante sous 30 jours, vous pouvez saisir le <a href="https://www.defenseurdesdroits.fr" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Défenseur des Droits</a>.
+        </p>
+
+        <p className="text-caption text-ink-muted border-t border-cloud pt-6 mt-10">
+          Déclaration établie le 15 janvier 2025 — Prochain audit prévu : Juillet 2025
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Une difficulté sur le site ?"
+    description="Signalez-nous tout problème d'accessibilité. Nous nous engageons à corriger sous 15 jours ouvrés."
+    ctaPrimary={{ label: 'Signaler un problème', href: '/fr/contact?subject=autre' }}
+    ctaSecondary={{ label: 'Nous contacter', href: '/fr/contact' }}
+    variant="heal"
+    icon="alertCircle"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

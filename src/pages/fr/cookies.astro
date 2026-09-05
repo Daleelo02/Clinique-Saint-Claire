@@ -1,0 +1,158 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+---
+
+<BaseLayout title="Gestion des Cookies — Hôpital Saint-Claire" description="Politique de cookies : traceurs déposés, finalités, gestion du consentement, durée. Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Politique de Cookies"
+    subtitle="Transparence sur les traceurs déposés et gestion de votre consentement"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main max-w-4xl">
+      <article className="prose prose-ink max-w-none">
+        <p className="text-body-lg text-ink-muted mb-8">
+          Lors de votre navigation sur notre site, des cookies et traceurs sont déposés sur votre terminal.
+          Cette page vous informe de leur nature, de leurs finalités et vous permet de gérer vos préférences.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">1. Qu'est-ce qu'un Cookie ?</h2>
+        <p className="text-body text-ink-muted mb-8">
+          Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone)
+          lors de la consultation d'un site web. Il permet à son émetteur d'identifier le terminal
+          jusqu'à sa date d'expiration. D'autres technologies similaires (stockage local, pixels, empreintes)
+          sont également concernées.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">2. Les Traceurs Déposés</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-heal-light text-heal">
+                <th className="p-4 text-left text-label">Nom</th>
+                <th className="p-4 text-left text-label">Type</th>
+                <th className="p-4 text-left text-label">Finalité</th>
+                <th className="p-4 text-left text-label">Durée</th>
+                <th className="p-4 text-left text-label">Consentement</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-cloud">
+              <tr>
+                <td className="p-4 text-body-sm font-mono text-ink">astro_session</td>
+                <td className="p-4 text-body-sm text-ink-muted">Technique</td>
+                <td className="p-4 text-body-sm text-ink-muted">Session utilisateur, panier, préférences</td>
+                <td className="p-4 text-body-sm text-ink-muted">Session</td>
+                <td className="p-4 text-body-sm text-heal font-medium">Non requis</td>
+              </tr>
+              <tr className="bg-cloud/30">
+                <td className="p-4 text-body-sm font-mono text-ink">preferred_locale</td>
+                <td className="p-4 text-body-sm text-ink-muted">Préférence</td>
+                <td className="p-4 text-body-sm text-ink-muted">Mémorise votre langue (fr/en/ar/pt)</td>
+                <td className="p-4 text-body-sm text-ink-muted">1 an</td>
+                <td className="p-4 text-body-sm text-heal font-medium">Non requis</td>
+              </tr>
+              <tr>
+                <td className="p-4 text-body-sm font-mono text-ink">cookie_consent</td>
+                <td className="p-4 text-body-sm text-ink-muted">Préférence</td>
+                <td className="p-4 text-body-sm text-ink-muted">Mémorise vos choix de consentement</td>
+                <td className="p-4 text-body-sm text-ink-muted">6 mois</td>
+                <td className="p-4 text-body-sm text-heal font-medium">Non requis</td>
+              </tr>
+              <tr className="bg-cloud/30">
+                <td className="p-4 text-body-sm font-mono text-ink">_ga, _ga_*</td>
+                <td className="p-4 text-body-sm text-ink-muted">Analytique (GA4)</td>
+                <td className="p-4 text-body-sm text-ink-muted">Mesure d'audience, statistiques anonymes</td>
+                <td className="p-4 text-body-sm text-ink-muted">13 mois</td>
+                <td className="p-4 text-body-sm text-vital font-medium">Requis</td>
+              </tr>
+              <tr>
+                <td className="p-4 text-body-sm font-mono text-ink">_fbp</td>
+                <td className="p-4 text-body-sm text-ink-muted">Marketing (Meta)</td>
+                <td className="p-4 text-body-sm text-ink-muted">Ciblage publicitaire, reciblage</td>
+                <td className="p-4 text-body-sm text-ink-muted">3 mois</td>
+                <td className="p-4 text-body-sm text-vital font-medium">Requis</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">3. Catégories de Cookies</h2>
+        <div className="space-y-4 mb-8">
+          <div className="bg-surface rounded-2xl p-6 border border-cloud border-l-4 border-heal">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3 flex items-center gap-2">
+              <svg className="w-6 h-6 text-heal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" /><polyline points="12 6 12 12 16 14" /></svg>
+              Strictement nécessaires (toujours actifs)
+            </h3>
+            <p className="text-body-sm text-ink-muted">Indispensables au fonctionnement du site : session, sécurité, langue, consentement. Ils ne peuvent être désactivés.</p>
+          </div>
+          <div className="bg-surface rounded-2xl p-6 border border-cloud border-l-4 border-heal">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3 flex items-center gap-2">
+              <svg className="w-6 h-6 text-heal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6" /></svg>
+              Mesure d'audience (statistiques)
+            </h3>
+            <p className="text-body-sm text-ink-muted">Google Analytics 4 : comptage visites, pages vues, parcours, appareils. Données anonymisées (IP tronquée). Aident à améliorer le site.</p>
+          </div>
+          <div className="bg-surface rounded-2xl p-6 border border-cloud border-l-4 border-vital">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3 flex items-center gap-2">
+              <svg className="w-6 h-6 text-vital" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+              Marketing / Publicité (optionnels)
+            </h3>
+            <p className="text-body-sm text-ink-muted">Meta Pixel (Facebook) : mesure conversions, audiences similaires, reciblage. Activés uniquement avec votre consentement explicite.</p>
+          </div>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">4. Gestion de Votre Consentement</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Lors de votre première visite, une bannière vous permet d'accepter, refuser ou personnaliser les cookies.
+          Vos choix sont mémorisés 6 mois. Vous pouvez les modifier à tout moment.
+        </p>
+
+        <div className="bg-heal-light/50 rounded-2xl p-6 mb-8">
+          <h3 className="font-display font-semibold text-heading-md text-ink mb-3">Modifier mes préférences</h3>
+          <p className="text-body-sm text-ink-muted mb-4">
+            Cliquez sur le bouton ci-dessous pour rouvrir la bannière de consentement et modifier vos choix.
+          </p>
+          <button
+            id="open-cookie-banner"
+            className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" /><path d="M12 6v6l4 2" /></svg>
+            Gérer mes cookies
+          </button>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">5. Paramétrage Navigateur</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Vous pouvez également configurer votre navigateur pour bloquer ou supprimer les cookies :
+        </p>
+        <ul className="space-y-2 mb-8">
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Chrome</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Firefox</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Safari</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://support.microsoft.com/fr-fr/windows/supprimer-et-gerer-les-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Edge</a></li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">6. Opposition aux Traceurs Publicitaires</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Vous pouvez vous opposer à la publicité ciblée via les plateformes suivantes :
+        </p>
+        <ul className="space-y-2 mb-8">
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://www.youronlinechoices.com/fr/" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">YourOnlineChoices (Europe)</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://www.facebook.com/ads/preferences/" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Préférences publicitaires Facebook</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">Paramètres annonces Google</a></li>
+        </ul>
+
+        <p className="text-caption text-ink-muted border-t border-cloud pt-6">
+          Dernière mise à jour : Janvier 2025
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

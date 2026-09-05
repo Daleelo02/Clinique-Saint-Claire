@@ -1,0 +1,168 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Patients & Visiteurs — Hôpital Saint-Claire" description="Admission, séjour, droits des patients, associations d'usagers. Préparez votre venue à l'Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Patients & Visiteurs"
+    subtitle="Toutes les informations pour préparer votre venue et votre séjour en toute sérénité"
+    ctaPrimary={{ label: 'Pré-admission en ligne', href: '/fr/patients/pre-admission' }}
+    ctaSecondary={{ label: 'Portail patient', href: '/fr/portail' }}
+  />
+
+  <!-- Quick Access Cards -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { href: '/fr/patients/admission', icon: 'user-plus', title: 'Admission & Pré-admission', desc: 'Démarches, documents, pré-admission en ligne, formalités' },
+          { href: '/fr/patients/sejour', icon: 'bed', title: 'Votre Séjour', desc: 'Chambre, repas, visites, télévision, wifi, effets personnels' },
+          { href: '/fr/patients/droits', icon: 'shield-check', title: 'Vos Droits', desc: 'Consentement, dossier médical, confidentialité, personne de confiance' },
+          { href: '/fr/patients/associations', icon: 'users', title: 'Associations d\'Usagers', desc: 'Commission des usagers, représentants, médiateur, remarques' },
+        ].map((card, index) => (
+          <a href={card.href} key={card.title} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[card.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-2 group-hover:text-heal transition-colors">{card.title}</h3>
+            <p className="text-body-sm text-ink-muted">{card.desc}</p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+              En savoir plus
+              <icons.arrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Admission Process -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="admission">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Votre Admission Simplifiée</h2>
+        <p className="text-body-lg text-ink-muted">Préparez votre venue en quelques clics</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Pré-admission en ligne', desc: 'Remplissez votre dossier administratif depuis chez vous, 7j/7, 24h/24. Gain de temps garanti à l\'arrivée.' },
+          { step: '2', title: 'Confirmation', desc: 'Notre équipe vérifie votre dossier et vous confirme par SMS/email. Liste des documents à apporter fournie.' },
+          { step: '3', title: 'Arrivée', desc: 'Présentez-vous à l\'accueil avec vos documents. Votre dossier est déjà prêt, passage accéléré.' },
+          { step: '4', title: 'Installation', desc: 'Accompagnement vers votre chambre/l\'unité de soins. Remise du livret d\'accueil et présentation de l\'équipe.' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative group">
+            {index < 3 && (
+              <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20" style={{ transform: 'translateX(50%)' }} aria-hidden="true" />
+            )}
+            <div className="text-center p-6 relative">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">
+                {item.step}
+              </div>
+              <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{item.title}</h3>
+              <p className="text-body-sm text-ink-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center mt-12">
+        <a href="/fr/patients/pre-admission" className="inline-flex items-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+          Commencer ma pré-admission
+          <icons.arrowRight className="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents -->
+  <section className="py-16 lg:py-20 bg-snow" id="documents">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Documents à Prévoir</h2>
+        <p className="text-body-lg text-ink-muted">Pour une admission sans délai</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: 'Identité & Social', items: ['Pièce d\'identité (CNI, passeport)', 'Carte Vitale à jour', 'Attestation de droits (moins de 1 an)', 'Carte de mutuelle / complémentaire', 'CMU-C / AME / ACS si concerné'] },
+          { title: 'Médical', items: ['Courrier du médecin adressant', 'Ordonnances en cours', 'Comptes-rendus d\'examens récents', 'Imagerie (CD, clichés, compte-rendus)', 'Carnet de vaccination', 'Groupe sanguin si connu'] },
+          { title: 'Administratif', items: ['Justificatif de domicile (< 3 mois)', 'RIB pour remboursements', 'Procuration si mineur / majeur protégé', 'Désignation personne de confiance', 'Directives anticipées si existantes'] },
+          { title: 'Confort Personnel', items: ['Vêtements de nuit confortables', 'Peignoir, chaussons fermés', 'Nécessaire de toilette', 'Lunettes, prothèses auditives', 'Lecture, tablette, chargeur', 'Petite monnaie (distributeurs)'] },
+        ].map((col, index) => (
+          <div key={col.title} className="bg-surface rounded-2xl shadow-card p-6" style={{ animationDelay: `${index * 100}ms` }}>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-4 flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+                <icons.clipboardCheck className="w-5 h-5" />
+              </div>
+              {col.title}
+            </h3>
+            <ul className="space-y-2">
+              {col.items.map(item => (
+                <li key={item} className="flex items-center gap-2 text-body-sm text-ink-muted">
+                  <svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Patient Portal -->
+  <section className="py-16 lg:py-20 bg-ink text-snow" id="portail">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Votre Portail Patient</h2>
+          <p className="text-body-lg text-snow/70 mb-6">
+            Accédez à votre dossier médical, résultats d'examens, rendez-vous et documents 24h/24, 7j/7.
+          </p>
+          <ul className="space-y-3 mb-8">
+            {[
+              'Résultats biologie & imagerie (sécurisés)',
+              'Historique consultations & hospitalisations',
+              'Rendez-vous à venir & prise de RDV en ligne',
+              'Documents : comptes-rendus, courriers, ordonnances',
+              'Messagerie sécurisée avec votre équipe soignante',
+              'Factures & attestations de paiement',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-3 text-body text-snow/80">
+                <svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/fr/portail" className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-ink bg-snow rounded-xl hover:bg-snow/90 transition-colors">
+            Accéder au portail
+            <icons.arrowRight className="w-5 h-5" />
+          </a>
+        </div>
+        <div className="aspect-[4/3] rounded-2xl bg-snow/10 flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.monitor className="w-24 h-24 mx-auto mb-4 text-heal" />
+            <p className="text-body-lg text-snow/70">Espace patient sécurisé</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Une question avant votre venue ?"
+    description="Notre service relations patients vous répond du lundi au vendredi, 8h–18h."
+    ctaPrimary={{ label: 'Nous contacter', href: '/fr/contact' }}
+    ctaSecondary={{ label: 'FAQ Patients', href: '/fr/patients/faq' }}
+    variant="heal"
+    icon="helpCircle"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

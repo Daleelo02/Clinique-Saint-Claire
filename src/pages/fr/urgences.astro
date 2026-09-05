@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Urgences 24/7 — Hôpital Saint-Claire" description="Service d'urgences adultes et pédiatriques ouvert 24h/24, 7j/7. Prise en charge immédiate des urgences vitales.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Service d'Urgences 24/7"
+    subtitle="Prise en charge immédiate des urgences vitales — Équipe médicale senior, SMUR, bloc de réanimation"
+    ctaPrimary={{ label: 'J\'y vais maintenant', href: '#acces' }}
+    ctaSecondary={{ label: 'Appeler le 15 (SAMU)', href: 'tel:15' }}
+    stats={[
+      { value: '24/7', label: 'Ouvert' },
+      { value: '< 30 min', label: 'Délai moyen' },
+      { value: '12 lits', label: 'UHCD' },
+      { value: 'SMUR', label: 'Mobile' },
+    ]}
+  />
+
+  <!-- When to come -->
+  <section className="py-16 lg:py-20 bg-snow" id="quand-venir">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Quand venir aux urgences ?</h2>
+        <p className="text-body-lg text-ink-muted">Les signes qui nécessitent une prise en charge urgente</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: 'heart-pulse', title: 'Douleur thoracique', desc: 'Oppression, irradiation bras/mâchoire, essoufflement brutal' },
+          { icon: 'brain', title: 'Signes d\'AVC', desc: 'Visage asymétrique, paralysie membre, trouble parole, perte vision' },
+          { icon: 'activity', title: 'Difficulté respiratoire', desc: 'Essoufflement au repos, sifflements, lèvres bleues' },
+          { icon: 'alert-circle', title: 'Traumatisme grave', desc: 'Chute hauteur, accident route, plaie profonde, déformation membre' },
+        ].map((item, index) => (
+          <div key={item.title} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(232, 93, 58, 0.1)' }}>
+              <icons[item.icon] className="w-7 h-7 text-vital" />
+            </div>
+            <h3 className="font-semibold text-heading-sm text-ink mb-2">{item.title}</h3>
+            <p className="text-body-sm text-ink-muted">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="parcours">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Votre parcours aux urgences</h2>
+        <p className="text-body-lg text-ink-muted">Une organisation optimisée pour une prise en charge rapide</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Accueil & Triage', desc: 'Infirmier(e) d\'accueil, évaluation de la gravité (échelle ATS), orientation immédiate' },
+          { step: '2', title: 'Box de Soins', desc: 'Installation, prise des constantes, premiers gestes (oxygène, perfusion, antalgiques)' },
+          { step: '3', title: 'Examen Médical', desc: 'Médecin urgentiste senior, examens ciblés (sang, ECG, imagerie), diagnostic' },
+          { step: '4', title: 'Sortie ou Hospitalisation', desc: 'Traitement, prescription, orientation (domicile, UHCD, service spécialisé)' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative group">
+            {index < 3 && (
+              <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20" style={{ transform: 'translateX(50%)' }} aria-hidden="true" />
+            )}
+            <div className="text-center p-6 relative">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">
+                {item.step}
+              </div>
+              <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{item.title}</h3>
+              <p className="text-body-sm text-ink-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Info -->
+  <section className="py-16 lg:py-20 bg-snow" id="acces">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-6">Informations pratiques</h2>
+
+          <div className="space-y-6 mb-8">
+            <div className="flex items-start gap-4 p-5 bg-surface rounded-xl border border-cloud">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-vital-light flex items-center justify-center">
+                <icons.mapPin className="w-6 h-6 text-vital" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-heading-sm text-ink mb-1">Adresse</h3>
+                <p className="text-body text-ink-muted">45 Avenue de la République, 75011 Saint-Claire<br />Entrée Urgences : 12 Rue de la Croix-Blanche</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-5 bg-surface rounded-xl border border-cloud">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                <icons.phone className="w-6 h-6 text-heal" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-heading-sm text-ink mb-1">Numéros utiles</h3>
+                <p className="text-body text-ink-muted">
+                  Urgences direct : <a href="tel:0123456789" className="font-medium text-heal hover:underline">01 23 45 67 89</a><br />
+                  SAMU (urgence vitale) : <a href="tel:15" className="font-medium text-vital hover:underline">15</a><br />
+                  Pompiers : <a href="tel:18" className="font-medium text-vital hover:underline">18</a><br />
+                  Urgences européennes : <a href="tel:112" className="font-medium text-vital hover:underline">112</a>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-5 bg-surface rounded-xl border border-cloud">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center">
+                <icons.clock className="w-6 h-6 text-gold" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-heading-sm text-ink mb-1">Horaires & Accès</h3>
+                <p className="text-body text-ink-muted">
+                  Ouvert 24h/24, 7j/7, 365j/an<br />
+                  Parking dédié urgences (20 places)<br />
+                  Accès PMR & ambulance
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-5 bg-surface rounded-xl border border-cloud">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                <icons.fileText className="w-6 h-6 text-heal" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-heading-sm text-ink mb-1">Documents à apporter</h3>
+                <p className="text-body text-ink-muted">Pièce d'identité, carte Vitale, mutuelle, ordonnances, comptes-rendus, liste médicaments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside className="lg:col-span-1">
+          <div className="bg-ink rounded-2xl p-8 text-snow sticky top-24">
+            <h3 className="font-display font-semibold text-heading-lg mb-6 text-center">
+              <icons.ambulance className="inline w-8 h-8 mr-2 text-vital" />
+              URGENCES
+            </h3>
+            <div className="space-y-4 mb-8">
+              <a href="tel:0123456789" className="w-full block bg-vital text-snow py-4 rounded-xl font-semibold text-body-lg text-center hover:bg-vital-hover transition-colors">
+                01 23 45 67 89
+              </a>
+              <p className="text-center text-snow/70 text-body-sm">Ligne directe urgences — 24h/24</p>
+            </div>
+            <div className="border-t border-snow/20 pt-6 space-y-4 text-center">
+              <p className="text-body-sm text-snow/70">Urgence vitale ?</p>
+              <a href="tel:15" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-label font-medium text-ink bg-snow rounded-xl hover:bg-snow/90 transition-colors">
+                <icons.phone className="w-5 h-5" />
+                Appeler le 15 (SAMU)
+              </a>
+              <p className="text-caption text-snow/50">Ou le 112 (numéro européen)</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pediatric Emergency -->
+  <section className="py-16 lg:py-20 bg-heal-light/50">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Urgences Pédiatriques Dédiées</h2>
+          <p className="text-body-lg text-ink-muted mb-6">
+            Un espace entièrement pensé pour les enfants et leurs parents : box adaptés, équipe pédiatrique, salle d'attente ludique, parcours sans douleur.
+          </p>
+          <ul className="space-y-3 mb-8">
+            {[
+              'Pédiatres urgentistes 24/7',
+              'Box de soin enfant/ado séparés',
+              'Protocole antalgique précoce (gaz hilarant, patch EMLA)',
+              'Parents autorisés au chevet en permanence',
+              'Liaison directe avec néonatologie et réanimation pédiatrique',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-3 text-body-sm text-ink">
+                <svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/fr/specialites/pediatrie" className="inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+            En savoir plus sur la pédiatrie
+            <icons.arrowRight className="w-5 h-5 transition-transform hover:translate-x-1" />
+          </a>
+        </div>
+        <div className="aspect-[4/3] rounded-2xl bg-cloud flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.baby className="w-24 h-24 mx-auto mb-4 text-heal/30" />
+            <p className="text-body-lg text-ink-muted">Espace pédiatrique dédié</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Besoin d'un rendez-vous non urgent ?"
+    description="Pour les soins programmés, consultez nos spécialistes sur rendez-vous."
+    ctaPrimary={{ label: 'Prendre rendez-vous', href: '/fr/rdv' }}
+    ctaSecondary={{ label: 'Trouver un médecin', href: '/fr/medecins' }}
+    variant="heal"
+    icon="calendar"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

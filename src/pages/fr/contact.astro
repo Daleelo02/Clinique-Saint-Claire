@@ -1,0 +1,213 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Contact & Accès — Hôpital Saint-Claire" description="Nous contacter : téléphone, email, formulaire, adresse. Plan d'accès, transports, parkings. Hôpital Saint-Claire, 45 Avenue de la République, 75011 Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Nous Contacter"
+    subtitle="Notre équipe est à votre écoute pour répondre à vos questions et vous orienter"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div className="bg-surface rounded-2xl shadow-elevated p-6 lg:p-10">
+          <h2 className="font-display font-bold text-heading-lg text-ink mb-6">Envoyez-nous un message</h2>
+          <form className="space-y-6" action="/api/contact" method="POST">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="firstName" className="block text-label text-ink mb-2 font-medium">Prénom *</label>
+                <input type="text" id="firstName" name="firstName" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div>
+                <label htmlFor="lastName" className="block text-label text-ink mb-2 font-medium">Nom *</label>
+                <input type="text" id="lastName" name="lastName" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="email" className="block text-label text-ink mb-2 font-medium">Email *</label>
+                <input type="email" id="email" name="email" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-label text-ink mb-2 font-medium">Téléphone</label>
+                <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="subject" className="block text-label text-ink mb-2 font-medium">Sujet *</label>
+              <select id="subject" name="subject" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none appearance-none bg-no-repeat bg-right-3 bg-center pr-10">
+                <option value="">Choisir un sujet</option>
+                <option value="rdv">Prise de rendez-vous</option>
+                <option value="medical">Question médicale</option>
+                <option value="administrative">Démarche administrative</option>
+                <option value="facturation">Facturation / Remboursement</option>
+                <option value="droits">Droits des patients</option>
+                <option value="reclamation">Réclamation / Suggestion</option>
+                <option value="presse">Presse / Médias</option>
+                <option value="recrutement">Recrutement</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-label text-ink mb-2 font-medium">Message *</label>
+              <textarea id="message" name="message" rows={5} required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none resize-y min-h-[120px]"></textarea>
+            </div>
+            <div className="flex items-start gap-3">
+              <input type="checkbox" id="consent" name="consent" required className="mt-1 w-5 h-5 rounded border-cloud text-heal focus:ring-heal" />
+              <label htmlFor="consent" className="text-body-sm text-ink-muted">
+                J'accepte que mes données soient utilisées pour traiter ma demande. <a href="/fr/confidentialite" className="text-heal hover:underline">En savoir plus</a>
+              </label>
+            </div>
+            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+              Envoyer le message
+              <icons.arrowRight className="w-5 h-5" />
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div className="space-y-8">
+          <div className="bg-surface rounded-2xl shadow-card p-6 lg:p-8">
+            <h2 className="font-display font-bold text-heading-lg text-ink mb-6">Coordonnées</h2>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                  <icons.mapPin className="w-6 h-6 text-heal" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-heading-sm text-ink mb-1">Adresse</h3>
+                  <address className="not-italic text-body text-ink-muted">
+                    Hôpital Saint-Claire<br />
+                    45 Avenue de la République<br />
+                    75011 Saint-Claire — France
+                  </address>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                  <icons.phone className="w-6 h-6 text-heal" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-heading-sm text-ink mb-1">Téléphone</h3>
+                  <div className="space-y-1 text-body text-ink-muted">
+                    <a href="tel:0123456789" className="hover:text-heal transition-colors">Standard : 01 23 45 67 89</a>
+                    <a href="tel:0123456789" className="hover:text-heal transition-colors">Urgences : 01 23 45 67 89 (24/7)</a>
+                    <a href="tel:0123456789" className="hover:text-heal transition-colors">Rendez-vous : 01 23 45 67 89</a>
+                    <a href="tel:0123456789" className="hover:text-heal transition-colors">International : +33 1 23 45 67 89</a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                  <icons.mail className="w-6 h-6 text-heal" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-heading-sm text-ink mb-1">Email</h3>
+                  <div className="space-y-1 text-body text-ink-muted">
+                    <a href="mailto:contact@saint-claire.fr" className="hover:text-heal transition-colors">Général : contact@saint-claire.fr</a>
+                    <a href="mailto:rdv@saint-claire.fr" className="hover:text-heal transition-colors">Rendez-vous : rdv@saint-claire.fr</a>
+                    <a href="mailto:international@saint-claire.fr" className="hover:text-heal transition-colors">International : international@saint-claire.fr</a>
+                    <a href="mailto:presse@saint-claire.fr" className="hover:text-heal transition-colors">Presse : presse@saint-claire.fr</a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-heal-light flex items-center justify-center">
+                  <icons.clock className="w-6 h-6 text-heal" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-heading-sm text-ink mb-1">Horaires d'ouverture</h3>
+                  <div className="space-y-1 text-body text-ink-muted">
+                    <p>Standard téléphonique : Lun–Ven 8h–20h, Sam 8h–13h</p>
+                    <p>Accueil physique : Lun–Ven 7h30–20h, Sam 8h–14h</p>
+                    <p>Urgences : 24h/24, 7j/7</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Access -->
+          <div className="bg-surface rounded-2xl shadow-card p-6 lg:p-8">
+            <h2 className="font-display font-bold text-heading-lg text-ink mb-6">Accès & Transports</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="font-semibold text-heading-sm text-ink">Transports en commun</h3>
+                <ul className="space-y-2 text-body-sm text-ink-muted">
+                  <li className="flex items-center gap-2"><icons.train className="w-4 h-4 text-heal" /> Métro Ligne 9 — Station <strong>Saint-Claire</strong> (sortie 2, 3 min à pied)</li>
+                  <li className="flex items-center gap-2"><icons.bus className="w-4 h-4 text-heal" /> Bus 26, 56, 96 — Arrêt <strong>Hôpital Saint-Claire</strong></li>
+                  <li className="flex items-center gap-2"><icons.bike className="w-4 h-4 text-heal" /> Vélib' — Station <strong>République / Saint-Claire</strong></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-heading-sm text-ink">En voiture</h3>
+                <ul className="space-y-2 text-body-sm text-ink-muted">
+                  <li className="flex items-center gap-2"><icons.navigation className="w-4 h-4 text-heal" /> Parking patients/visiteurs : 200 places (entrée Rue de la Croix-Blanche)</li>
+                  <li className="flex items-center gap-2"><icons.wheelchair className="w-4 h-4 text-heal" /> Places PMR & bornes de recharge électrique</li>
+                  <li className="flex items-center gap-2"><icons.ambulance className="w-4 h-4 text-vital" /> Dépose-minute urgences & ambulances</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map placeholder -->
+  <section className="py-16 bg-cloud/50">
+    <div className="container-main">
+      <div className="aspect-[2/1] rounded-2xl bg-cloud flex items-center justify-center relative overflow-hidden">
+        <div className="text-center p-8">
+          <icons.mapPin className="w-16 h-16 mx-auto mb-4 text-heal/30" />
+          <p className="text-body-lg text-ink-muted">Carte interactive — Google Maps / Plan</p>
+          <a href="https://maps.google.com/?q=Hôpital+Saint-Claire+45+Avenue+de+la+République+75011" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+            Ouvrir dans Google Maps
+            <icons.externalLink className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Quick -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Questions fréquentes</h2>
+      </header>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {[
+          { q: 'Comment obtenir mon dossier médical ?', a: 'Adressez une demande écrite au service des admissions ou via le portail patient. Délai : 8 jours (48h en cas d\'urgence).' },
+          { q: 'Quels sont les modes de paiement acceptés ?', a: 'Carte bancaire, chèque, espèces, virement, tiers payant (mutuelle, CMU-C, AME). Pas de paiement en plusieurs fois.' },
+          { q: 'Puis-je être accompagné(e) lors de ma consultation ?', a: 'Oui, une personne de votre choix peut vous accompagner (sauf contre-indication médicale).' },
+          { q: 'Comment déposer une réclamation ?', a: 'Via le formulaire ci-dessus, par courrier au Directeur, ou auprès de la Commission des Usagers. Réponse sous 30 jours.' },
+        ].map((faq, index) => (
+          <details key={index} className="group bg-surface rounded-xl border border-cloud p-6">
+            <summary className="flex items-center justify-between cursor-pointer list-none text-heading-sm font-semibold text-ink">
+              {faq.q}
+              <icons.chevronDown className="w-5 h-5 text-ink-muted transition-transform group-open:rotate-180" />
+            </summary>
+            <p className="mt-4 text-body text-ink-muted">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+      <div className="text-center mt-10">
+        <a href="/fr/patients/droits" className="inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+          Voir toutes les questions / Vos droits
+          <icons.arrowRight className="w-5 h-5 transition-transform hover:translate-x-1" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

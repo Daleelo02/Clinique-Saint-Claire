@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { SpecialtyGrid, Pillars, StatsBar, NewsCarousel, CTABanner } from '@/components/features';
+---
+
+<BaseLayout title="الرئيسية — مستشفى سان كلير">
+  <NavBar currentLocale="ar" slot="header" />
+
+  <!-- Hero Section -->
+  <Hero
+    title="التميز الطبي في خدمة صحتك"
+    subtitle="مستشفى خاص غير ربحي منذ 1923 — 45 تخصصاً، 150+ طبيب خبير، 98% رضا المرضى"
+    stats={[
+      { value: '150+', label: 'أطباء خبراء' },
+      { value: '45', label: 'تخصصات' },
+      { value: '98%', label: 'رضا المرضى' },
+      { value: '1923', label: 'التأسيس' },
+    ]}
+    ctaPrimary={{ label: 'حجز موعد عبر الإنترنت', href: '/ar/rdv' }}
+    ctaSecondary={{ label: 'الطوارئ: 01 23 45 67 89', href: '/ar/urgences' }}
+  />
+
+  <!-- Pillars / Why Choose Us -->
+  <Pillars
+    title="لماذا تختار مستشفى سان كلير؟"
+    subtitle="ثلاثة ركائز تميزنا منذ أكثر من قرن"
+  />
+
+  <!-- Specialties Grid -->
+  <SpecialtyGrid limit={12} showViewAll={true} viewAllHref="/ar/specialites" />
+
+  <!-- Stats Bar -->
+  <StatsBar variant="heal" />
+
+  <!-- News Carousel -->
+  <NewsCarousel limit={3} showViewAll={true} viewAllHref="/ar/actualites" />
+
+  <!-- CTA Banner -->
+  <CTABanner
+    title="بحاجة إلى رأي طبي؟"
+    description="فريق أطبائنا المتخصصين متاح 24/7. استشارة عن بعد، موعد حضوري، أو طوارئ: نحن هنا من أجلك."
+    ctaPrimary={{ label: 'التواصل مع طبيب', href: '/ar/contact' }}
+    ctaSecondary={{ label: 'حجز موعد', href: '/ar/rdv' }}
+    icon="heartHandshake"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

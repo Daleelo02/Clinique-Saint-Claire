@@ -1,0 +1,179 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+---
+
+<BaseLayout title="Politique de Confidentialité — Hôpital Saint-Claire" description="RGPD : traitement des données personnelles, droits, finalités, durées, DPO. Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Politique de Confidentialité"
+    subtitle="Protection de vos données personnelles — Conformité RGPD et secret médical"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main max-w-4xl">
+      <article className="prose prose-ink max-w-none">
+        <p className="text-body-lg text-ink-muted mb-8">
+          L'Hôpital Saint-Claire attache une importance primordiale à la protection de vos données personnelles.
+          Cette politique explique quelles données nous collectons, pourquoi, comment nous les utilisons et quels sont vos droits.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">1. Responsable de Traitement</h2>
+        <p className="text-body text-ink-muted mb-6">
+          Hôpital Saint-Claire — 45 Avenue de la République, 75011 Saint-Claire<br />
+          Représenté par M. Philippe Laurent, Directeur Général<br />
+          <strong>Délégué à la Protection des Données (DPO) :</strong> dpo@saint-claire.fr
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">2. Données Collectées</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-heal-light text-heal">
+                <th className="p-4 text-left text-label">Catégorie</th>
+                <th className="p-4 text-left text-label">Données</th>
+                <th className="p-4 text-left text-label">Finalité</th>
+                <th className="p-4 text-left text-label">Base Légale</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-cloud">
+              <tr>
+                <td className="p-4 text-body-sm font-medium text-ink">Identité</td>
+                <td className="p-4 text-body-sm text-ink-muted">Civilité, nom, prénom, date/lieu naissance, NIR, photo</td>
+                <td className="p-4 text-body-sm text-ink-muted">Identification patient, dossier médical</td>
+                <td className="p-4 text-body-sm text-ink-muted">Obligation légale, contrat</td>
+              </tr>
+              <tr className="bg-cloud/30">
+                <td className="p-4 text-body-sm font-medium text-ink">Contact</td>
+                <td className="p-4 text-body-sm text-ink-muted">Adresse, téléphone, email, personne à prévenir</td>
+                <td className="p-4 text-body-sm text-ink-muted">Prise de contact, convocation, urgence</td>
+                <td className="p-4 text-body-sm text-ink-muted">Contrat, intérêt légitime</td>
+              </tr>
+              <tr>
+                <td className="p-4 text-body-sm font-medium text-ink">Santé</td>
+                <td className="p-4 text-body-sm text-ink-muted">Antécédents, diagnostics, traitements, examens, imagerie</td>
+                <td className="p-4 text-body-sm text-ink-muted">Soins, continuité, coordination, recherche</td>
+                <td className="p-4 text-body-sm text-ink-muted">Intérêt vital, santé publique</td>
+              </tr>
+              <tr className="bg-cloud/30">
+                <td className="p-4 text-body-sm font-medium text-ink">Administratif</td>
+                <td className="p-4 text-body-sm text-ink-muted">Carte Vitale, mutuelle, CMU, RIB, justificatifs</td>
+                <td className="p-4 text-body-sm text-ink-muted">Facturation, remboursement, tiers payant</td>
+                <td className="p-4 text-body-sm text-ink-muted">Obligation légale, contrat</td>
+              </tr>
+              <tr>
+                <td className="p-4 text-body-sm font-medium text-ink">Navigation</td>
+                <td className="p-4 text-body-sm text-ink-muted">IP, cookies, logs, pages visitées, terminal</td>
+                <td className="p-4 text-body-sm text-ink-muted">Sécurité, statistiques, amélioration</td>
+                <td className="p-4 text-body-sm text-ink-muted">Intérêt légitime, consentement</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">3. Finalités des Traitements</h2>
+        <ul className="space-y-3 mb-8">
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Prise en charge médicale et administrative</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Facturation, remboursement, tiers payant</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Continuité des soins, coordination ville-hôpital</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Qualité, sécurité, vigilance sanitaire</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Recherche clinique (avec consentement)</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Gestion du site web, sécurité, statistiques</li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">4. Destinataires</h2>
+        <ul className="space-y-3 mb-8">
+          <li className="text-body text-ink-muted"><strong>Équipe soignante :</strong> médecins, infirmiers, pharmaciens, administratifs habilités (besoin d'en connaître)</li>
+          <li className="text-body text-ink-muted"><strong>Sous-traitants :</strong> hébergement HDS (OVHcloud), logiciels médicaux certifiés, laboratoire d'analyses</li>
+          <li className="text-body text-ink-muted"><strong>Partenaires de soin :</strong> médecin traitant, établissements de référence, SAMU/SMUR</li>
+          <li className="text-body text-ink-muted"><strong>Organismes publics :</strong> ARS, Assurance Maladie, ANSM, CNAM (obligations légales)</li>
+          <li className="text-body text-ink-muted"><strong>Recherche :</strong> promoteurs d'essais cliniques, registres (anonymisées/pseudonymisées)</li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">5. Durées de Conservation</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-heal-light text-heal">
+                <th className="p-4 text-left text-label">Type de Données</th>
+                <th className="p-4 text-left text-label">Durée</th>
+                <th className="p-4 text-left text-label">Base</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-cloud">
+              <tr><td className="p-4 text-body-sm text-ink">Dossier médical</td><td className="p-4 text-body-sm text-ink-muted">20 ans après dernier séjour / 30 ans si recherche</td><td className="p-4 text-body-sm text-ink-muted">Code santé publique</td></tr>
+              <tr className="bg-cloud/30"><td className="p-4 text-body-sm text-ink">Imagerie / Biologie</td><td className="p-4 text-body-sm text-ink-muted">20 ans / 30 ans (pathologie lourde)</td><td className="p-4 text-body-sm text-ink-muted">Code santé publique</td></tr>
+              <tr><td className="p-4 text-body-sm text-ink">Données administratives</td><td className="p-4 text-body-sm text-ink-muted">10 ans après dernier paiement</td><td className="p-4 text-body-sm text-ink-muted">Code de commerce</td></tr>
+              <tr className="bg-cloud/30"><td className="p-4 text-body-sm text-ink">Cookies analytiques</td><td className="p-4 text-body-sm text-ink-muted">13 mois max</td><td className="p-4 text-body-sm text-ink-muted">ePrivacy / RGPD</td></tr>
+              <tr><td className="p-4 text-body-sm text-ink">Logs de sécurité</td><td className="p-4 text-body-sm text-ink-muted">1 an</td><td className="p-4 text-body-sm text-ink-muted">Intérêt légitime</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">6. Vos Droits (RGPD)</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {[
+            ['Accès', 'Obtenir copie de vos données et informations sur leur traitement'],
+            ['Rectification', 'Faire corriger des données inexactes ou incomplètes'],
+            ['Effacement', 'Demander la suppression (sauf obligation légale de conservation)'],
+            ['Limitation', 'Geler l\'usage de vos données le temps d\'une vérification'],
+            ['Portabilité', 'Recevoir vos données dans un format structuré, couramment utilisé'],
+            ['Opposition', 'Vous opposer au traitement pour motif légitime'],
+            ['Retrait consentement', 'Retirer votre consentement à tout moment (si base = consentement)'],
+            ['Décisions automatisées', 'Ne pas faire l\'objet d\'une décision fondée uniquement sur un traitement automatisé'],
+          ].map(([right, desc]) => (
+            <div key={right} className="bg-surface rounded-xl p-4 border border-cloud">
+              <h3 className="font-semibold text-heading-sm text-ink mb-1">{right}</h3>
+              <p className="text-body-sm text-ink-muted">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">7. Exercice de Vos Droits</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Adressez votre demande au Délégué à la Protection des Données :
+        </p>
+        <ul className="space-y-2 mb-8">
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Par email : <a href="mailto:dpo@saint-claire.fr" className="text-heal hover:underline">dpo@saint-claire.fr</a></li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Par courrier : DPO — Hôpital Saint-Claire — 45 Avenue de la République, 75011 Saint-Claire</li>
+          <li className="flex items-center gap-2 text-body text-ink"><svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Via le formulaire : <a href="/fr/contact?subject=autre" className="text-heal hover:underline">Formulaire contact</a></li>
+        </ul>
+        <p className="text-body text-ink-muted mb-8">
+          Une réponse vous sera apportée sous 1 mois (prorogeable de 2 mois pour complexité).
+          En cas de refus, vous pourrez saisir la CNIL : <a href="https://cnil.fr" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">cnil.fr</a>
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">8. Sécurité</h2>
+        <ul className="space-y-3 mb-8">
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Hébergement HDS (Hébergeur Données de Santé) certifié</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Chiffrement TLS 1.3 (site) / AES-256 (stockage)</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Accès par habilitation, traçabilité, double authentification</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>PRA/PCA testés annuellement, audits sécurité réguliers</li>
+          <li className="flex items-start gap-3 text-body text-ink"><svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Sensibilisation continue du personnel (RGPD, secret médical, cybersécurité)</li>
+        </ul>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">9. Transferts Hors UE</h2>
+        <p className="text-body text-ink-muted mb-8">
+          Vos données de santé ne sont <strong>pas transférées hors de l'Union Européenne</strong>.
+          Si un sous-traitant hors UE intervenait (ex: support technique), des clauses contractuelles types CNIL/Commission UE seraient signées.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">10. Cookies</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Voir notre <a href="/fr/cookies" className="text-heal hover:underline">Politique de Cookies</a> pour le détail des traceurs déposés, leurs finalités et votre gestion du consentement.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">11. Mise à Jour</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Cette politique est révisée régulièrement. Dernière mise à jour : <strong>Janvier 2025</strong>.
+          Les modifications substantielles vous sont notifiées par email ou via votre portail patient.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

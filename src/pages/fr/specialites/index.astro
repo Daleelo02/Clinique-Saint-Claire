@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { SpecialtyGrid, CTABanner } from '@/components/features';
+import { specialties } from '@/data/specialties';
+---
+
+<BaseLayout title="Nos Spécialités — Hôpital Saint-Claire">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Nos Spécialités Médicales"
+    subtitle="45 spécialités médicales et chirurgicales, 150+ médecins experts au service de votre santé"
+    ctaPrimary={{ label: 'Prendre rendez-vous', href: '/fr/rdv' }}
+    ctaSecondary={{ label: 'Trouver un médecin', href: '/fr/medecins' }}
+  />
+
+  <SpecialtyGrid specialties={specialties} limit={specialties.length} showViewAll={false} />
+
+  <CTABanner
+    title="Vous ne trouvez pas votre spécialité ?"
+    description="Notre annuaire médical complet référence tous nos médecins par spécialité, pathologie ou nom. Accédez aux profils détaillés, disponibilités et prenez rendez-vous en ligne."
+    ctaPrimary={{ label: 'Voir l\'annuaire des médecins', href: '/fr/medecins' }}
+    ctaSecondary={{ label: 'Nous contacter pour orientation', href: '/fr/contact' }}
+    icon="search"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

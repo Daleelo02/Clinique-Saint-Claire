@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer } from '@/components/layout';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Page Introuvable — Hôpital Saint-Claire" noIndex description="La page que vous recherchez n'existe pas ou a été déplacée.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <section className="min-h-[70vh] flex items-center bg-snow">
+    <div className="container-main text-center py-16 lg:py-24">
+      <p className="font-display font-bold text-[clamp(6rem,15vw,12rem)] leading-none text-heal/20 mb-6 select-none" aria-hidden="true">404</p>
+      <h1 className="font-display font-bold text-heading-xl text-ink mb-4">Page introuvable</h1>
+      <p className="text-body-lg text-ink-muted max-w-lg mx-auto mb-10 leading-relaxed">
+        La page que vous recherchez n'existe pas ou a été déplacée. Vérifiez l'adresse ou utilisez la recherche.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <a href="/fr/" className="inline-flex items-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+          <icons.home className="w-5 h-5" />
+          Retour à l'accueil
+        </a>
+        <a href="/fr/specialites" className="inline-flex items-center gap-2 px-8 py-4 text-label font-medium text-ink border-2 border-ink rounded-xl hover:bg-ink hover:text-snow transition-colors">
+          <icons.stethoscope className="w-5 h-5" />
+          Voir nos spécialités
+        </a>
+      </div>
+
+      <div className="max-w-md mx-auto">
+        <label htmlFor="search-404" className="sr-only">Rechercher un médecin</label>
+        <div className="relative">
+          <icons.search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ink-muted/50" />
+          <input
+            id="search-404"
+            type="search"
+            placeholder="Rechercher un médecin, une spécialité..."
+            class="w-full pl-12 pr-4 py-4 text-body bg-surface border border-cloud rounded-xl focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none"
+          />
+        </div>
+        <p className="text-caption text-ink-muted mt-3">
+          Ou consultez <a href="/fr/medecins" className="text-heal hover:underline">l'annuaire médical</a> / <a href="/fr/plan-du-site" className="text-heal hover:underline">le plan du site</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

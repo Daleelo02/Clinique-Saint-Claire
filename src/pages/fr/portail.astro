@@ -1,0 +1,208 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Portail Patient — Hôpital Saint-Claire" description="Espace patient sécurisé : résultats d'examens, rendez-vous, dossier médical, messagerie, factures. Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Votre Portail Patient"
+    subtitle="Accédez à votre santé 24h/24, 7j/7 : résultats, rendez-vous, dossier médical, messagerie sécurisée"
+    ctaPrimary={{ label: 'Se connecter', href: '#connexion' }}
+    ctaSecondary={{ label: 'Créer mon compte', href: '#inscription' }}
+    stats={[
+      { value: '24/7', label: 'Accessible' },
+      { value: 'RGPD', label: 'Sécurisé' },
+      { value: 'HDS', label: 'Hébergé' },
+      { value: 'France', label: 'Données' },
+    ]}
+  />
+
+  <!-- Features -->
+  <section className="py-16 lg:py-20 bg-snow" id="fonctionnalites">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Vos Services en Ligne</h2>
+        <p className="text-body-lg text-ink-muted">Tout votre parcours de soins au même endroit</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: 'file-text', title: 'Résultats d\'Examens', desc: 'Biologie, imagerie, anatomopathologie disponibles dès validation. Téléchargement PDF, historique complet.', badge: 'Nouveau' },
+          { icon: 'calendar', title: 'Mes Rendez-vous', desc: 'Prochains RDV, annulation/report en 1 clic, rappels SMS/email, prise de RDV en ligne.', badge: '' },
+          { icon: 'folder-open', title: 'Mon Dossier Médical', desc: 'Comptes-rendus hospitalisation, consultations, courriers, ordonnances. Partage sécurisé médecin traitant.', badge: '' },
+          { icon: 'message-square', title: 'Messagerie Sécurisée', desc: 'Échanges avec votre équipe soignante, questions médicales, demande renouvellement, documents.', badge: 'Bientôt' },
+          { icon: 'credit-card', title: 'Factures & Paiements', desc: 'Factures détaillées, paiement en ligne sécurisé, attestations, historique remboursements.', badge: '' },
+          { icon: 'user', title: 'Mon Profil', desc: 'Coordonnées, personne de confiance, directives anticipées, préférences de contact, RGPD.', badge: '' },
+        ].map((feature, index) => (
+          <article key={feature.title} className="relative group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 60}ms` }}>
+            {feature.badge && (
+              <span className="absolute -top-3 right-4 px-2 py-0.5 text-caption font-medium bg-vital text-snow rounded-full">{feature.badge}</span>
+            )}
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[feature.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{feature.title}</h3>
+            <p className="text-body-sm text-ink-muted mb-4">{feature.desc}</p>
+            <a href="#connexion" className="inline-flex items-center gap-1.5 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+              Accéder
+              <icons.arrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Connexion / Inscription -->
+  <section className="py-16 lg:py-20 bg-cloud/50">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Connexion -->
+        <div id="connexion" className="bg-surface rounded-2xl shadow-elevated p-6 lg:p-10">
+          <h2 className="font-display font-bold text-heading-lg text-ink mb-6">Connexion</h2>
+          <form className="space-y-5" action="/auth/login" method="POST">
+            <div>
+              <label htmlFor="email-login" className="block text-label text-ink mb-2 font-medium">Email *</label>
+              <input type="email" id="email-login" name="email" required autocomplete="email" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+            <div>
+              <label htmlFor="password-login" className="block text-label text-ink mb-2 font-medium">Mot de passe *</label>
+              <div className="relative">
+                <input type="password" id="password-login" name="password" required autocomplete="current-password" className="w-full px-4 py-3 pr-12 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+                <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-muted hover:text-heal" aria-label="Afficher/masquer le mot de passe">
+                  <icons.eye className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="remember" className="w-4 h-4 rounded border-cloud text-heal focus:ring-heal" />
+                <span className="text-body-sm text-ink-muted">Se souvenir de moi</span>
+              </label>
+              <a href="/fr/portail/mot-de-passe-oublie" className="text-body-sm font-medium text-heal hover:text-heal-hover transition-colors">Mot de passe oublié ?</a>
+            </div>
+            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+              Se connecter
+              <icons.logIn className="w-5 h-5" />
+            </button>
+          </form>
+          <p className="text-center text-body-sm text-ink-muted mt-6">
+            Première connexion ? <a href="#inscription" className="text-heal hover:underline font-medium">Activez votre compte</a>
+          </p>
+        </div>
+
+        <!-- Inscription -->
+        <div id="inscription" className="bg-surface rounded-2xl shadow-elevated p-6 lg:p-10">
+          <h2 className="font-display font-bold text-heading-lg text-ink mb-3">Créer mon Compte</h2>
+          <p className="text-body-sm text-ink-muted mb-6">Munissez-vous de votre dernier courrier d'hospitalisation ou de consultation (code d'activation).</p>
+          <form className="space-y-5" action="/auth/register" method="POST">
+            <div>
+              <label htmlFor="activation-code" className="block text-label text-ink mb-2 font-medium">Code d'activation *</label>
+              <input type="text" id="activation-code" name="activationCode" required placeholder="XXXXX-XXXXX" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+            <div>
+              <label htmlFor="dob-register" className="block text-label text-ink mb-2 font-medium">Date de naissance *</label>
+              <input type="date" id="dob-register" name="birthdate" required max={new Date().toISOString().split('T')[0]} className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+            <div>
+              <label htmlFor="email-register" className="block text-label text-ink mb-2 font-medium">Email personnel *</label>
+              <input type="email" id="email-register" name="email" required autocomplete="email" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+            <div>
+              <label htmlFor="password-register" className="block text-label text-ink mb-2 font-medium">Mot de passe *</label>
+              <div className="relative">
+                <input type="password" id="password-register" name="password" required minlength={10} autocomplete="new-password" className="w-full px-4 py-3 pr-12 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+                <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-muted hover:text-heal" aria-label="Afficher/masquer le mot de passe">
+                  <icons.eye className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-caption text-ink-muted mt-1">Minimum 10 caractères, majuscule, minuscule, chiffre, symbole</p>
+            </div>
+            <div>
+              <label htmlFor="password-confirm" className="block text-label text-ink mb-2 font-medium">Confirmer le mot de passe *</label>
+              <input type="password" id="password-confirm" name="passwordConfirm" required autocomplete="new-password" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+            <div className="flex items-start gap-3">
+              <input type="checkbox" name="consent" id="consent-portail" required className="mt-1 w-5 h-5 rounded border-cloud text-heal focus:ring-heal" />
+              <label htmlFor="consent-portail" className="text-body-sm text-ink-muted">
+                J'accepte les <a href="/fr/confidentialite" className="text-heal hover:underline">conditions d'utilisation</a> et la <a href="/fr/confidentialite" className="text-heal hover:underline">politique de confidentialité</a>
+              </label>
+            </div>
+            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+              Activer mon compte
+              <icons.userPlus className="w-5 h-5" />
+            </button>
+          </form>
+          <p className="text-center text-body-sm text-ink-muted mt-6">
+            Pas de code d'activation ? <a href="/fr/contact?subject=autre" className="text-heal hover:underline font-medium">Contactez-nous</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sécurité -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Sécurité & Confidentialité</h2>
+        <p className="text-body-lg text-ink-muted">Vos données de santé sont notre priorité absolue</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {[
+          { icon: 'shield', title: 'Hébergement HDS', desc: 'Serveurs certifiés Hébergeur Données de Santé en France, conformes au Code de la Santé Publique.' },
+          { icon: 'lock', title: 'Chiffrement Extrême', desc: 'TLS 1.3 en transit, AES-256 au repos, clés gérées par HSM certifié.' },
+          { icon: 'fingerprint', title: 'Double Authentification', desc: 'Connexion par email + code SMS ou application authentificateur (TOTP).' },
+          { icon: 'eye-off', title: 'Secret Médical', desc: 'Accès strictement limité aux professionnels habilités de votre équipe de soins.' },
+          { icon: 'database', title: 'Traçabilité Totale', desc: 'Journal d\'accès horodaté, consultation de votre historique d\'accès à tout moment.' },
+          { icon: 'refresh-cw', title: 'Révocation Immédiate', desc: 'Suppression compte et données sur demande (sauf obligations légales de conservation).' },
+        ].map((sec, index) => (
+          <div key={sec.title} className="bg-surface rounded-2xl shadow-card p-6 text-center hover:shadow-card-hover transition-all duration-normal" style={{ animationDelay: `${index * 60}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[sec.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-2">{sec.title}</h3>
+            <p className="text-body-sm text-ink-muted">{sec.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile App -->
+  <section className="py-16 lg:py-20 bg-ink text-snow">
+    <div className="container-main text-center">
+      <h2 className="font-display font-bold text-heading-xl text-snow mb-4">L'Application Mobile</h2>
+      <p className="text-body-lg text-snow/70 mb-8 max-w-2xl mx-auto">
+        Retrouvez toutes les fonctionnalités du portail dans votre poche. Notifications push, biométrie, mode hors-ligne.
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-6 py-4 bg-snow/10 border border-snow/20 rounded-xl hover:bg-snow/20 transition-colors">
+          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 14.36c-.26-1.57-1.21-2.85-2.72-3.17 2.15-.56 3.79-2.32 3.79-4.57 0-2.58-2.08-4.67-4.65-4.67-1.34 0-2.57.55-3.47 1.42-.5-.75-1.44-1.29-2.49-1.29-2.58 0-4.67 2.09-4.67 4.67 0 2.23 1.59 4.02 3.7 4.53-1.51.34-2.46 1.62-2.72 3.18-.25 1.5-.08 3.02.53 4.34-.68.68-1.07 1.62-1.07 2.61 0 2.25 2.94 3.77 5.32 2.87 1.04-.39 1.99-.99 2.82-1.76.05.76.44 1.7 1.1 2.48 2.52.97 5.32-.55 5.32-2.87 0-.99-.39-1.93-1.07-2.61.61-1.32.78-2.84.53-4.34z"/></svg>
+          <span className="font-semibold text-body">App Store</span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-6 py-4 bg-snow/10 border border-snow/20 rounded-xl hover:bg-snow/20 transition-colors">
+          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zm-1.853-11.187c-.084.063-.337.188-.253.375.126.274.325.35.35.35.125 0 .25-.135.237-.312-.002-.009-.009-.028-.009-.028.079-.634.293-1.08.62-1.433.39-.41.997-.682 1.64-.682.597 0 1.175.254 1.56.681.327.353.538.799.618 1.433 0 0-.007.019-.009.028-.013.177-.138.312-.262.312-.026 0-.15-.076-.275-.35-.084-.188-.338-.313-.253-.375.437-.363.79-.848 1.058-1.414.218-.459.34-.967.34-1.5 0-.544-.132-1.06-.36-1.52-.27-.54-.71-.917-1.227-1.166l-.156-.073c-.084-.038-.156-.114-.156-.22 0-.096.063-.18.156-.218.52-.25.948-.617 1.228-1.165.268-.566.622-1.05 1.06-1.413z"/></svg>
+          <span className="font-semibold text-body">Google Play</span>
+        </a>
+      </div>
+      <p className="text-caption text-snow/50">Disponible iOS 15+ et Android 8+</p>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Une question sur le portail ?"
+    description="Notre support technique vous répond du lundi au vendredi, 8h-18h."
+    ctaPrimary={{ label: 'Nous contacter', href: '/fr/contact' }}
+    ctaSecondary={{ label: 'Aide & Tutoriels', href: '/fr/portail/aide' }}
+    variant="heal"
+    icon="helpCircle"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

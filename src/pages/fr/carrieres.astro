@@ -1,0 +1,153 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner, StatsBar } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Carrières & Recrutement — Hôpital Saint-Claire" description="Rejoignez l'Hôpital Saint-Claire : offres d'emploi médecins, infirmiers, administratifs, stages. Candidature spontanée.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Rejoignez-Nous"
+    subtitle="Médecins, infirmiers, administratifs, chercheurs : donnez du sens à votre carrière dans un hôpital à taille humaine"
+    ctaPrimary={{ label: 'Voir les offres', href: '#offres' }}
+    ctaSecondary={{ label: 'Candidature spontanée', href: '#spontanee' }}
+    stats={[
+      { value: '800+', label: 'Collaborateurs' },
+      { value: '45', label: 'Métiers' },
+      { value: '92%', label: 'Fidélisation' },
+      { value: '15', label: 'Nationalités' },
+    ]}
+  />
+
+  <!-- Why work here -->
+  <section className="py-16 lg:py-20 bg-snow" id="pourquoi">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Pourquoi Choisir Saint-Claire ?</h2>
+        <p className="text-body-lg text-ink-muted">Un environnement où l'excellence rime avec bienveillance</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { icon: 'heart-handshake', title: 'Sens & Impact', desc: 'Soigner, innover, transmettre. Chaque jour, votre travail change des vies.' },
+          { icon: 'graduation-cap', title: 'Formation Continue', desc: 'Budget formation généreux, DPC, certifications, mentorat, conférences internes.' },
+          { icon: 'zap', title: 'Innovation Quotidienne', desc: 'Robotique, IA, télémédecine, recherche : vous travaillez avec les technologies de demain.' },
+          { icon: 'users', title: 'Équipe & Bienveillance', desc: 'Effectifs renforcés, rythmes respectés, QVT certifiée, prévention risques psychosociaux.' },
+          { icon: 'award', title: 'Reconnaissance', desc: 'Grilles salariales attractives, primes, intéressement, évolution de carrière claire.' },
+          { icon: 'building', title: 'Cadre Exceptionnel', desc: 'Locaux rénovés, espaces de vie, restauration qualité, parkings, transports, crèche.' },
+        ].map((benefit, index) => (
+          <div key={benefit.title} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 80}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[benefit.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{benefit.title}</h3>
+            <p className="text-body-sm text-ink-muted">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Offers -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="offres">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Offres Actuelles</h2>
+        <p className="text-body-lg text-ink-muted">Postulez en ligne en quelques clics</p>
+      </header>
+
+      <div className="space-y-4 max-w-3xl mx-auto">
+        {[
+          { title: 'Médecin Cardiologue Interventionnel', type: 'CDI', dept: 'Cardiologie', location: 'Temps plein', desc: 'Coronarographie, angioplastie, service 5 cardiologues, plateau technique Da Vinci.', ref: 'MED-CARD-2025-001' },
+          { title: 'Infirmier(ère) Diplômé(e) d\'État', type: 'CDI', dept: 'Soins intensifs / Réanimation', location: 'Temps plein (12h)', desc: 'Unité de 12 lits, encadrement senior, formation continue, primes nuit/week-end.', ref: 'IDE-SI-2025-003' },
+          { title: 'Infirmier(ère) Bloc Opératoire', type: 'CDI', dept: 'Bloc Opératoire Central', location: 'Temps plein', desc: '12 salles, robotique Da Vinci, équipe stable, astreintes partagées.', ref: 'IBODE-2025-002' },
+          { title: 'Manipulateur Radio / Imagerie', type: 'CDI', dept: 'Radiologie', location: 'Temps plein', desc: 'IRM 3T, Scanner 256 barrettes, Écho, interventionnel. Équipe 8 manipulateurs.', ref: 'MANIP-RAD-2025-001' },
+          { title: 'Secrétaire Médical(e)', type: 'CDI', dept: 'Secrétariat Cardiologie', location: 'Temps plein', desc: 'Accueil patients, gestion agenda 5 médecins, dossier patient, facturation.', ref: 'SEC-CARD-2025-001' },
+          { title: 'Data Scientist Santé', type: 'CDI', dept: 'Direction Innovation / Recherche', location: 'Temps plein / Hybride', desc: 'Modélisation prédictive, NLP dossiers, IA imagerie. Stack Python, Spark, Kubernetes.', ref: 'DATA-2025-001' },
+          { title: 'Interne / Assistant Spécialiste', type: 'Stage / Assistantat', dept: 'Toutes spécialités', location: 'Selon grille', desc: 'Agrément complet, encadrement senior, garde partagée, thèse possible.', ref: 'INTERNE-2025' },
+        ].map((job, index) => (
+          <article key={job.ref} className="bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover transition-all duration-normal" style={{ animationDelay: `${index * 60}ms` }}>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+              <div>
+                <h3 className="font-display font-semibold text-heading-md text-ink mb-1">{job.title}</h3>
+                <div className="flex flex-wrap items-center gap-4 text-body-sm text-ink-muted">
+                  <span className="flex items-center gap-1"><icons.building className="w-4 h-4" /> {job.dept}</span>
+                  <span className="flex items-center gap-1"><icons.briefcase className="w-4 h-4" /> {job.type}</span>
+                  <span className="flex items-center gap-1"><icons.mapPin className="w-4 h-4" /> {job.location}</span>
+                </div>
+              </div>
+              <span className="text-caption text-ink-muted whitespace-nowrap">Réf : {job.ref}</span>
+            </div>
+            <p className="text-body-sm text-ink-muted mb-4">{job.desc}</p>
+            <div className="flex items-center gap-3">
+              <a href={`/fr/contact?subject=recrutement&ref=${job.ref}`} className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+                Postuler
+                <icons.arrowRight className="w-5 h-5" />
+              </a>
+              <a href={`/fr/contact?subject=recrutement&ref=${job.ref}`} className="text-body-sm font-medium text-heal hover:text-heal-hover transition-colors flex items-center gap-1">
+                En savoir plus
+                <icons.externalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Spontaneous Application -->
+  <section className="py-16 lg:py-20 bg-snow" id="spontanee">
+    <div className="container-main">
+      <div className="max-w-2xl mx-auto text-center">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Candidature Spontanée</h2>
+        <p className="text-body-lg text-ink-muted mb-8">
+          Vous ne trouvez pas l'offre qui vous correspond ? Nous sommes toujours à la recherche de talents passionnés.
+          Envoyez-nous votre CV et lettre de motivation, nous étudierons votre profil avec attention.
+        </p>
+        <a href="/fr/contact?subject=recrutement" className="inline-flex items-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+          Envoyer ma candidature spontanée
+          <icons.arrowRight className="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section className="py-16 lg:py-20 bg-ink text-snow">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Notre Processus de Recrutement</h2>
+        <p className="text-body-lg text-snow/70">Transparent, respectueux, efficace</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Candidature', desc: 'En ligne via formulaire ou email. Accusé de réception sous 48h.' },
+          { step: '2', title: 'Pré-sélection', desc: 'Étude CV + lettre. Entretien téléphonique 15-20 min si profil retenu.' },
+          { step: '3', title: 'Entretiens', desc: '1 à 2 entretiens : manager + RH. Mise en situation possible selon poste.' },
+          { step: '4', title: 'Intégration', desc: 'Proposition, formalités, parcours d\'onboarding 3 mois, parrain/marraine.' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative text-center">
+            {index < 3 && <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20 translate-x-1/2" aria-hidden="true" />}
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">{item.step}</div>
+            <h3 className="font-display font-semibold text-heading-md text-snow mb-3">{item.title}</h3>
+            <p className="text-body-sm text-snow/70">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Prêt à nous rejoindre ?"
+    description="Consultez nos offres ou déposez votre candidature spontanée. Notre équipe RH vous répond sous 15 jours."
+    ctaPrimary={{ label: 'Voir toutes les offres', href: '#offres' }}
+    ctaSecondary={{ label: 'Candidature spontanée', href: '#spontanee' }}
+    variant="heal"
+    icon="userPlus"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

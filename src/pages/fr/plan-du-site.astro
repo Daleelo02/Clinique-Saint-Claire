@@ -1,0 +1,124 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Plan du Site — Hôpital Saint-Claire" description="Plan du site complet de l'Hôpital Saint-Claire : toutes les pages organisées par rubriques.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Plan du Site"
+    subtitle="Toutes les pages de l'Hôpital Saint-Claire organisées par rubriques"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          {
+            title: 'Accueil & Spécialités',
+            icon: 'home',
+            links: [
+              { label: 'Accueil', href: '/fr/' },
+              { label: 'Toutes nos spécialités', href: '/fr/specialites' },
+              { label: 'Cardiologie', href: '/fr/specialites/cardiologie' },
+              { label: 'Neurologie', href: '/fr/specialites/neurologie' },
+              { label: 'Oncologie', href: '/fr/specialites/oncologie' },
+              { label: 'Orthopédie', href: '/fr/specialites/orthopedie' },
+              { label: 'Pédiatrie', href: '/fr/specialites/pediatrie' },
+              { label: 'Gynécologie-Obstétrique', href: '/fr/specialites/gynecologie-obstetrique' },
+              { label: 'Urgences', href: '/fr/specialites/urgences' },
+              { label: 'Check-up', href: '/fr/specialites/check-up' },
+              { label: 'Médecine Interne', href: '/fr/specialites/medecine-interne' },
+              { label: 'Radiologie & Imagerie', href: '/fr/specialites/radiologie-imagerie' },
+              { label: 'Anesthésie-Réanimation', href: '/fr/specialites/anesthesie-reanimation' },
+              { label: 'Urologie', href: '/fr/specialites/urologie' },
+              { label: 'ORL', href: '/fr/specialites/orl' },
+            ]
+          },
+          {
+            title: 'Patients & Visiteurs',
+            icon: 'users',
+            links: [
+              { label: 'Patients & Visiteurs', href: '/fr/patients' },
+              { label: 'Admission & Pré-admission', href: '/fr/patients/admission' },
+              { label: 'Vos Droits', href: '/fr/patients/droits' },
+              { label: 'Associations d\'Usagers', href: '/fr/patients/associations' },
+              { label: 'Portail Patient', href: '/fr/portail' },
+              { label: 'Prendre Rendez-vous', href: '/fr/rdv' },
+              { label: 'Annuaire Médical', href: '/fr/medecins' },
+            ]
+          },
+          {
+            title: 'Services & Parcours',
+            icon: 'heart-pulse',
+            links: [
+              { label: 'Urgences 24/7', href: '/fr/urgences' },
+              { label: 'Centre de Check-up', href: '/fr/check-up' },
+              { label: 'Patients Internationaux', href: '/fr/international' },
+              { label: 'Contact & Accès', href: '/fr/contact' },
+              { label: 'Actualités & Événements', href: '/fr/actualites' },
+              { label: 'Carrières & Recrutement', href: '/fr/carrieres' },
+            ]
+          },
+          {
+            title: 'À Propos & Légal',
+            icon: 'building',
+            links: [
+              { label: 'À Propos', href: '/fr/a-propos' },
+              { label: 'Mentions Légales', href: '/fr/mentions-legales' },
+              { label: 'Politique de Confidentialité', href: '/fr/confidentialite' },
+              { label: 'Gestion des Cookies', href: '/fr/cookies' },
+              { label: 'Accessibilité', href: '/fr/accessibilite' },
+              { label: 'Plan du Site', href: '/fr/plan-du-site' },
+            ]
+          },
+        ].map((section, index) => (
+          <div key={section.title} className="space-y-4" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+                <icons[section.icon] className="w-5 h-5 text-heal" />
+              </div>
+              <h2 className="font-display font-semibold text-heading-md text-ink">{section.title}</h2>
+            </div>
+            <nav aria-label={section.title}>
+              <ul className="space-y-2">
+                {section.links.map(link => (
+                  <li key={link.href}>
+                    <a href={link.href} className="text-body-sm text-ink-muted hover:text-heal transition-colors duration-fast flex items-center gap-2 group">
+                      <icons.chevronRight className="w-4 h-4 text-ink-muted/50 group-hover:text-heal group-hover:translate-x-1 transition-transform" />
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        ))}
+      </div>
+
+      <!-- Langues -->
+      <div className="mt-16 pt-8 border-t border-cloud">
+        <h2 className="font-display font-semibold text-heading-lg text-ink mb-6">Versions Linguistiques</h2>
+        <div className="flex flex-wrap gap-4">
+          {[
+            { code: 'fr', label: 'Français', href: '/fr/' },
+            { code: 'en', label: 'English', href: '/en/' },
+            { code: 'ar', label: 'العربية', href: '/ar/' },
+            { code: 'pt', label: 'Português', href: '/pt/' },
+          ].map(lang => (
+            <a key={lang.code} href={lang.href} className="inline-flex items-center gap-2 px-4 py-2 bg-surface border border-cloud rounded-lg hover:border-heal hover:bg-heal-light transition-colors">
+              <span className="font-medium text-body-sm">{lang.label}</span>
+              <span className="text-caption text-ink-muted">({lang.code})</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

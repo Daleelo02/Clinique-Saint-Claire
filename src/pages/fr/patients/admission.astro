@@ -1,0 +1,165 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Admission & Pré-admission — Hôpital Saint-Claire" description="Préparez votre admission à l'Hôpital Saint-Claire : pré-admission en ligne, documents à prévoir, formalités, arrivée.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Admission & Pré-Admission"
+    subtitle="Simplifiez vos démarches et gagnez du temps à votre arrivée"
+    ctaPrimary={{ label: 'Pré-admission en ligne', href: '/fr/patients/pre-admission' }}
+    ctaSecondary={{ label: 'Nous appeler', href: 'tel:0123456789' }}
+  />
+
+  <!-- Admissions Types -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Choisissez votre type d'admission</h2>
+        <p className="text-body-lg text-ink-muted">Chaque parcours est adapté à vos besoins</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { icon: 'hospital', title: 'Hospitalisation Classique', duration: '≥ 1 nuit', desc: 'Intervention ou soins nécessitant plusieurs jours d\'hospitalisation. Chambre individuelle, restauration, équipe soignante 24/7.', features: ['Installation chambre individuelle', 'Restauration diététique adaptée', 'Équipe soignante dédiée', 'Visites libres'] },
+          { icon: 'clock', title: 'Chirurgie Ambulatoire', duration: '< 12h', desc: 'Intervention dans la journée avec retour à domicile le soir. Parcours dédié, rapide et confortable.', features: ['Arrivée le matin à jeun', 'Intervention sans nuitée', 'Surveillance post-opératoire', 'Retour domicile le soir', 'Contact 24h de suivi'] },
+          { icon: 'calendar', title: 'Consultation Externe', duration: 'Journée', desc: 'Consultations, examens et bilans sans hospitalisation. Prises de RDV en ligne ou par téléphone.', features: ['Prise de RDV en ligne', 'Accès direct spécialités', 'Examens dans la journée', 'Sans hospitalisation'] },
+        ].map((type, index) => (
+          <div key={type.title} className="bg-surface rounded-2xl shadow-card p-6 flex flex-col hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[type.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-1">{type.title}</h3>
+            <p className="text-caption text-heal font-medium mb-3">{type.duration}</p>
+            <p className="text-body-sm text-ink-muted mb-5 flex-1">{type.desc}</p>
+            <ul className="space-y-2 mb-6">
+              {type.features.map(f => (
+                <li key={f} className="flex items-center gap-2 text-body-sm text-ink">
+                  <svg className="w-4 h-4 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href="/fr/rdv" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-label font-medium text-snow bg-heal rounded-lg hover:bg-heal-hover transition-colors">
+              Commencer
+              <icons.arrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pré-admission -->
+  <section className="py-16 lg:py-20 bg-heal-light/50" id="preadmission">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Pré-admission en ligne</h2>
+          <p className="text-body-lg text-ink-muted mb-6">
+            Complétez votre dossier administratif depuis chez vous, en moins de 10 minutes. À votre arrivée,
+            votre passage à l'accueil est réduit à un simple contrôle d'identité.
+          </p>
+          <ul className="space-y-3 mb-8">
+            {[
+              'Accessible 24h/24, 7j/7 depuis ordinateur, tablette ou mobile',
+              'Dossier médical pré-rempli à transférer à votre médecin',
+              'Documents scannés ou photographiés directement',
+              'Confirmation par SMS / email dès validation',
+              'Gain de temps garanti : 5 minutes d\'attente en moyenne',
+              'Éligible ambassadeur : parrainez, simplifiez ensemble',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-3 text-body text-ink">
+                <svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/fr/patients/pre-admission" className="inline-flex items-center gap-2 px-8 py-4 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+            Commencer ma pré-admission
+            <icons.arrowRight className="w-5 h-5" />
+          </a>
+        </div>
+        <div className="aspect-[4/3] rounded-2xl bg-cloud flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.laptop className="w-24 h-24 mx-auto mb-4 text-heal/30" />
+            <p className="text-body-lg text-ink-muted">Pré-admission en ligne — 10 min chrono</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents -->
+  <section className="py-16 lg:py-20 bg-snow" id="documents">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Documents à Prévoir</h2>
+        <p className="text-body-lg text-ink-muted">Pour une admission sans délai, pensez à emporter :</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {[
+          'Pièce d\'identité (CNI ou passeport en cours de validité)',
+          'Carte Vitale à jour + attestation de droits (< 1 an)',
+          'Carte de mutuelle / complémentaire santé',
+          'Courrier de votre médecin adressant',
+          'Ordonnances en cours de traitement',
+          'Comptes-rendus d\'examens récents (imagerie, biologie)',
+          'Groupe sanguin (si connu)',
+          'Carnet de vaccination',
+          'Justificatif de domicile (< 3 mois)',
+          'RIB pour remboursements éventuels',
+          'Désignation de la personne de confiance',
+          'Directives anticipées (si vous en avez rédigées)',
+        ].map((doc, index) => (
+          <div key={doc} className="flex items-start gap-3 p-4 bg-surface rounded-xl border border-cloud">
+            <svg className="w-5 h-5 mt-0.5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+            <span className="text-body-sm">{doc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Déroulé de l'arrivée -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="deroulement">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Votre Journée d'Arrivée</h2>
+      </header>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '1', title: 'Arrivée à l\'Accueil', desc: 'Bureau des admissions ouvertes de 7h30 à 20h. Contrôle de votre dossier pré-rempli ou création sur place.' },
+          { step: '2', title: 'Installation', desc: 'Accompagnement vers votre chambre ou l\'unité. Remise du livret d\'accueil et des informations pratiques.' },
+          { step: '3', title: 'Rencontre Soignants', desc: 'Infirmier(ère) référent(e), médecin traitant interne, anesthésiste (si intervention). Questions-réponses.' },
+          { step: '4', title: 'Début des Soins', desc: 'Constantes, préparation, protocoles. Vous êtes informé(e) de votre programme détaillé.' },
+        ].map((item, index) => (
+          <div key={item.step} className="relative">
+            {index < 3 && <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-heal/20 translate-x-1/2" aria-hidden="true" />}
+            <div className="text-center p-6 relative">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-heal text-snow font-display font-bold text-display-sm">{item.step}</div>
+              <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{item.title}</h3>
+              <p className="text-body-sm text-ink-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Besoin d'aide pour vos démarches ?"
+    description="Le bureau des admissions est ouvert du lundi au samedi. Un agent vous accompagne à chaque étape."
+    ctaPrimary={{ label: 'Contacter les admissions', href: '/fr/contact' }}
+    ctaSecondary={{ label: 'Pré-admission en ligne', href: '/fr/patients/pre-admission' }}
+    variant="heal"
+    icon="helpCircle"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

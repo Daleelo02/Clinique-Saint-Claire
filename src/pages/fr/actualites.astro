@@ -1,0 +1,112 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { NewsCarousel } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Actualités & Événements — Hôpital Saint-Claire" description="Toutes nos actualités : innovations médicales, événements, certifications, recherche, vie de l'hôpital.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Actualités & Événements"
+    subtitle="Restez informé de nos dernières innovations, événements, publications et avancées médicales"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <!-- Featured News -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        {/* Main featured article */}
+        <article className="lg:col-span-2 bg-surface rounded-2xl shadow-elevated overflow-hidden">
+          <div className="aspect-[16/9] bg-cloud relative overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <icons.zap className="w-24 h-24 text-heal/30" />
+            </div>
+            <div className="absolute top-4 left-4">
+              <span className="inline-flex items-center gap-1 px-3 py-1 text-caption font-medium bg-snow/90 backdrop-blur text-heal rounded-full">
+                Innovation
+              </span>
+            </div>
+          </div>
+          <div className="p-8">
+            <time className="text-caption text-ink-muted">15 janvier 2025</time>
+            <h2 className="font-display font-bold text-heading-xl text-ink mt-2 mb-4">
+              Nouveau Robot Chirurgical Da Vinci X : Une Révolution pour la Chirurgie Mini-Invasive
+            </h2>
+            <p className="text-body-lg text-ink-muted mb-6">
+              L'Hôpital Saint-Claire s'équipe du dernier système robotique Da Vinci X, offrant une précision inégalée
+              pour les interventions urologiques, gynécologiques et digestives. Cette technologie de pointe permet
+              des gestes plus précis, une vision 3D haute définition et une récupération plus rapide pour les patients.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="/fr/actualites/robot-da-vinci-x" className="inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+                Lire l'article complet
+                <icons.arrowRight className="w-5 h-5 transition-transform hover:translate-x-1" />
+              </a>
+              <span className="text-caption text-ink-muted">5 min de lecture</span>
+            </div>
+          </div>
+        </article>
+
+        {/* Side featured articles */}
+        <div className="space-y-6">
+          {[
+            { title: 'Ouverture du Nouveau Centre de Check-up Premium', category: 'Nouveauté', date: '08 janv. 2025', icon: 'star' },
+            { title: 'Certification HAS : Score Exceptionnel', category: 'Qualité', date: '03 janv. 2025', icon: 'award' },
+          ].map((news, index) => (
+            <article key={news.title} className="group bg-surface rounded-xl shadow-card p-5 hover:shadow-card-hover transition-all duration-normal">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+                <icons[news.icon] className="w-6 h-6" />
+              </div>
+              <div className="flex items-center gap-2 text-caption text-ink-muted mb-2">
+                <span>{news.category}</span>
+                <span>·</span>
+                <time>{news.date}</time>
+              </div>
+              <h3 className="font-semibold text-heading-sm text-ink mb-2 group-hover:text-heal transition-colors">{news.title}</h3>
+              <a href="#" className="inline-flex items-center gap-1.5 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+                Lire
+                <icons.arrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- All News Grid -->
+      <NewsCarousel
+        limit={6}
+        showViewAll={true}
+        viewAllHref="/fr/actualites"
+        className="bg-snow"
+      />
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section className="py-16 lg:py-20 bg-ink text-snow">
+    <div className="container-main text-center">
+      <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Ne manquez rien de nos actualités</h2>
+      <p className="text-body-lg text-snow/70 mb-8 max-w-2xl mx-auto">
+        Recevez chaque mois notre sélection d'articles, événements et avancées médicales directement dans votre boîte mail.
+      </p>
+      <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          placeholder="Votre email"
+          className="flex-1 px-6 py-4 text-body bg-snow/10 border border-snow/20 rounded-xl focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none text-snow placeholder:text-snow/50"
+          required
+        />
+        <button type="submit" className="px-8 py-4 text-label font-medium text-ink bg-snow rounded-xl hover:bg-snow/90 transition-colors whitespace-nowrap">
+          S'abonner
+        </button>
+      </form>
+      <p className="text-caption text-snow/50 mt-4">Aucun spam, désinscription en un clic. <a href="/fr/confidentialite" className="text-heal hover:underline">Politique de confidentialité</a></p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

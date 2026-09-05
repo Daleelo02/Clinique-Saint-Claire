@@ -1,0 +1,143 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+---
+
+<BaseLayout title="Mentions Légales — Hôpital Saint-Claire" description="Mentions légales, éditeur, hébergeur, propriété intellectuelle, responsabilité.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Mentions Légales"
+    subtitle="Informations légales conformément à la loi n°2004-575 du 21 juin 2004"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main max-w-4xl">
+      <article className="prose prose-ink max-w-none">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">1. Éditeur du site</h2>
+        <dl className="space-y-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Dénomination sociale :</dt>
+            <dd className="text-body-sm text-ink-muted">Hôpital Saint-Claire</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Forme juridique :</dt>
+            <dd className="text-body-sm text-ink-muted">Établissement de santé privé à but non lucratif (Association Loi 1901)</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Siège social :</dt>
+            <dd className="text-body-sm text-ink-muted">45 Avenue de la République, 75011 Saint-Claire, France</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Numéro SIRET :</dt>
+            <dd className="text-body-sm text-ink-muted">123 456 789 00012</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Code APE :</dt>
+            <dd className="text-body-sm text-ink-muted">8610Z — Activités hospitalières</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Directeur de la publication :</dt>
+            <dd className="text-body-sm text-ink-muted">M. Philippe Laurent, Directeur Général</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Contact :</dt>
+            <dd className="text-body-sm text-ink-muted">
+              <a href="tel:0123456789" className="text-heal hover:underline">01 23 45 67 89</a><br />
+              <a href="mailto:contact@saint-claire.fr" className="text-heal hover:underline">contact@saint-claire.fr</a>
+            </dd>
+          </div>
+        </dl>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">2. Hébergeur</h2>
+        <dl className="space-y-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Société :</dt>
+            <dd className="text-body-sm text-ink-muted">OVHcloud</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Adresse :</dt>
+            <dd className="text-body-sm text-ink-muted">2 rue Kellermann, 59100 Roubaix, France</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Téléphone :</dt>
+            <dd className="text-body-sm text-ink-muted"><a href="tel:0972101007" className="text-heal hover:underline">09 72 10 10 07</a></dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Site :</dt>
+            <dd className="text-body-sm text-ink-muted"><a href="https://ovhcloud.com" target="_blank" rel="noopener noreferrer" className="text-heal hover:underline">ovhcloud.com</a></dd>
+          </div>
+        </dl>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">3. Propriété Intellectuelle</h2>
+        <p className="text-body text-ink-muted mb-4">
+          L'ensemble de ce site (textes, images, logos, charte graphique, vidéos, icônes, structure, base de données, etc.)
+          est la propriété exclusive de l'Hôpital Saint-Claire ou fait l'objet d'une autorisation d'utilisation.
+        </p>
+        <p className="text-body text-ink-muted mb-4">
+          Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site,
+          quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable,
+          sauf dans les cas prévus par l'article L.122-5 du Code de la Propriété Intellectuelle.
+        </p>
+        <p className="text-body text-ink-muted mb-4">
+          Les marques, logos, sigles, noms de domaine « Hôpital Saint-Claire », « Saint-Claire Santé » et signes distinctifs
+          sont des marques déposées. Toute reproduction non autorisée constitue un délit de contrefaçon.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">4. Responsabilité</h2>
+        <p className="text-body text-ink-muted mb-4">
+          L'Hôpital Saint-Claire s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site.
+          Toutefois, des inexactitudes ou omissions peuvent survenir. L'utilisateur devra s'assurer de l'exactitude des
+          informations auprès des services concernés.
+        </p>
+        <p className="text-body text-ink-muted mb-4">
+          L'Hôpital Saint-Claire ne saurait être tenu responsable des dommages directs ou indirects résultant de l'accès
+          au site ou de l'utilisation des informations qu'il contient, y compris l'inaccessibilité, les pertes de données,
+          ou la présence de virus.
+        </p>
+        <p className="text-body text-ink-muted mb-4">
+          Les liens hypertextes vers des sites tiers sont fournis à titre indicatif. L'Hôpital Saint-Claire n'exerce
+          aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">5. Droit Applicable</h2>
+        <p className="text-body text-ink-muted mb-4">
+          Les présentes mentions légales sont régies par le droit français. Tout litige relatif à l'utilisation du site
+          sera soumis à la compétence exclusive des tribunaux français.
+        </p>
+
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-6">6. Crédits</h2>
+        <dl className="space-y-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Conception & Développement :</dt>
+            <dd className="text-body-sm text-ink-muted">Équipe digitale Hôpital Saint-Claire</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Framework :</dt>
+            <dd className="text-body-sm text-ink-muted">Astro 4.x + Tailwind CSS 3.4 + React 18</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Icônes :</dt>
+            <dd className="text-body-sm text-ink-muted">Lucide React</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Polices :</dt>
+            <dd className="text-body-sm text-ink-muted">Fraunces (Google Fonts) & DM Sans (Google Fonts)</dd>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 p-4 bg-surface rounded-xl border border-cloud">
+            <dt className="font-semibold text-body-sm text-ink w-48 flex-shrink-0">Photos :</dt>
+            <dd className="text-body-sm text-ink-muted">Hôpital Saint-Claire / Banques d'images libres</dd>
+          </div>
+        </dl>
+
+        <p className="text-caption text-ink-muted border-t border-cloud pt-6">
+          Dernière mise à jour : Janvier 2025
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

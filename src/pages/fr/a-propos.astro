@@ -1,0 +1,199 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner, StatsBar } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="À Propos — Hôpital Saint-Claire" description="Hôpital privé à but non lucratif depuis 1923. Historique, gouvernance, qualité, recherche. L'excellence médicale au cœur de vous.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Plus d'un siècle d'excellence"
+    subtitle="Hôpital privé à but non lucratif depuis 1923 — L'excellence médicale au cœur de vous"
+    ctaPrimary={{ label: 'Nos valeurs', href: '#valeurs' }}
+    ctaSecondary={{ label: 'Notre histoire', href: '#histoire' }}
+    stats={[
+      { value: '1923', label: 'Fondation' },
+      { value: '45', label: 'Spécialités' },
+      { value: '150+', label: 'Médecins' },
+      { value: '98%', label: 'Satisfaction' },
+    ]}
+  />
+
+  <!-- Histoire -->
+  <section className="py-16 lg:py-20 bg-snow" id="histoire">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-6">Une histoire au service des patients</h2>
+          <div className="space-y-6 text-body-lg text-ink-muted leading-relaxed">
+            <p>
+              Fondé en 1923 par des médecins visionnaires, l'Hôpital Saint-Claire naît de la volonté
+              d'offrir une médecine d'excellence accessible à tous, dans un esprit humaniste et non lucratif.
+            </p>
+            <p>
+              Au fil des décennies, l'hôpital s'est développé tout en restant fidèle à sa mission fondatrice :
+              soigner avec expertise, humanité et innovation. Chaque investissement, chaque recrutement,
+              chaque innovation technologique répond à un seul objectif : le bien-être de nos patients.
+            </p>
+            <p>
+              Aujourd'hui, fort de 45 spécialités, 150+ médecins et d'un plateau technique de pointe,
+              Saint-Claire continue d'écrire son histoire — la vôtre.
+            </p>
+          </div>
+        </div>
+        <div className="aspect-[4/3] rounded-2xl bg-cloud flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.building className="w-24 h-24 mx-auto mb-4 text-heal/30" />
+            <p className="text-body-lg text-ink-muted">Archives 1923 — Salle d'accueil d'origine</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Valeurs -->
+  <section className="py-16 lg:py-20 bg-cloud/50" id="valeurs">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Notre Mission & Nos Valeurs</h2>
+        <p className="text-body-lg text-ink-muted">Ce qui guide chacune de nos décisions, chaque jour</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: 'heart-handshake', title: 'Humanité', desc: 'Le patient au centre de tout. Écoute, respect, dignité, parcours personnalisé.' },
+          { icon: 'shield-check', title: 'Excellence', desc: 'Médecine de pointe, protocoles validés, formation continue, exigence de qualité.' },
+          { icon: 'zap', title: 'Innovation', desc: 'Technologies avancées, recherche clinique, intelligence artificielle, télémédecine.' },
+          { icon: 'users', title: 'Solidarité', desc: 'But non lucratif, accessibilité, médecine sociale, engagement territorial.' },
+        ].map((value, index) => (
+          <div key={value.title} className="group bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[value.icon] className="w-7 h-7 text-heal" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3">{value.title}</h3>
+            <p className="text-body-sm text-ink-muted">{value.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <StatsBar variant="heal" stats={[
+    { value: '150+', label: 'Médecins Experts', icon: 'userCheck' },
+    { value: '45', label: 'Spécialités Médicales', icon: 'stethoscope' },
+    { value: '98%', label: 'Satisfaction Patients', icon: 'heart' },
+    { value: '1923', label: 'Année de Fondation', icon: 'award' },
+  ]} />
+
+  <!-- Gouvernance -->
+  <section className="py-16 lg:py-20 bg-snow" id="gouvernance">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Gouvernance & Direction</h2>
+        <p className="text-body-lg text-ink-muted">Une direction médicale et administrative engagée</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { name: 'Dr François Moreau', role: 'Président de CME', specialty: 'Cardiologue', since: '2018' },
+          { name: 'Dr Isabelle Dubois', role: 'Directrice Médicale', specialty: 'Oncologue', since: '2020' },
+          { name: 'M. Philippe Laurent', role: 'Directeur Général', specialty: 'Administrateur', since: '2015' },
+          { name: 'Dr Sophie Martin', role: 'Directrice Soins', specialty: 'Infirmière Cadre', since: '2019' },
+        ].map((person, index) => (
+          <div key={person.name} className="bg-surface rounded-2xl shadow-card p-6 text-center hover:shadow-card-hover transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-heal-light flex items-center justify-center text-2xl font-display font-bold text-heal">
+              {person.name.split(' ').map(n => n[0]).join('')}
+            </div>
+            <h3 className="font-semibold text-heading-sm text-ink mb-1">{person.name}</h3>
+            <p className="text-body-sm text-heal font-medium mb-1">{person.role}</p>
+            <p className="text-caption text-ink-muted mb-3">{person.specialty}</p>
+            <p className="text-caption text-ink-muted">En fonction depuis {person.since}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality & Certifications -->
+  <section className="py-16 lg:py-20 bg-ink text-snow" id="qualite">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="font-display font-bold text-heading-xl text-snow mb-4">Qualité & Certifications</h2>
+        <p className="text-body-lg text-snow/70">La reconnaissance indépendante de notre engagement</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: 'Certification HAS', subtitle: 'Haute Autorité de Santé', detail: 'Qualité des soins confirmée — 3ème certification consécutive', icon: 'award' },
+          { title: 'ISO 9001', subtitle: 'Management de la Qualité', detail: 'Système de management certifié depuis 2008', icon: 'shield-check' },
+          { title: 'Joint Commission', subtitle: 'International', detail: 'Accréditation internationale Gold Seal', icon: 'star' },
+          { title: 'Label Éthique', subtitle: 'Soins & Recherche', detail: 'Engagement éthique validé par comité indépendant', icon: 'heart-handshake' },
+        ].map((cert, index) => (
+          <div key={cert.title} className="group bg-snow/5 rounded-2xl p-6 border border-snow/10 hover:border-heal/50 hover:bg-snow/10 transition-all duration-normal" style={{ animationDelay: `${index * 100}ms` }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-heal" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons[cert.icon] className="w-6 h-6" />
+            </div>
+            <h3 className="font-display font-semibold text-heading-md text-snow mb-1">{cert.title}</h3>
+            <p className="text-body-sm text-snow/70 mb-2">{cert.subtitle}</p>
+            <p className="text-caption text-snow/50">{cert.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section className="py-16 lg:py-20 bg-snow" id="recherche">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="aspect-[4/3] rounded-2xl bg-cloud flex items-center justify-center relative overflow-hidden">
+          <div className="text-center p-8">
+            <icons.microscope className="w-24 h-24 mx-auto mb-4 text-heal/30" />
+            <p className="text-body-lg text-ink-muted">Centre de Recherche Clinique</p>
+          </div>
+        </div>
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-6">Recherche & Innovation</h2>
+          <p className="text-body-lg text-ink-muted mb-6">
+            L'Hôpital Saint-Claire est acteur de la recherche clinique avec plus de 80 protocoles actifs.
+            Notre Centre de Recherche Clinique (CRC) accompagne les promoteurs académiques et industriels
+            dans toutes les phases de l'essai clinique.
+          </p>
+          <ul className="space-y-3 mb-8">
+            {[
+              '80+ protocoles de recherche actifs',
+              'CRC certifié — Inspecté ANSM / FDA',
+              'Partenariats académiques (INSERM, Universités)',
+              'Essais thérapeutiques phases I à IV',
+              'Registres nationaux & internationaux',
+              'Comité de Protection des Personnes (CPP) dédié',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-3 text-body text-ink">
+                <svg className="w-5 h-5 text-heal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/fr/a-propos/recherche" className="inline-flex items-center gap-2 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+            En savoir plus sur la recherche
+            <icons.arrowRight className="w-5 h-5 transition-transform hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Rejoignez-nous"
+    description="Médecins, infirmiers, administratifs, chercheurs : l'Hôpital Saint-Claire recrute des talents passionnés."
+    ctaPrimary={{ label: 'Voir nos offres', href: '/fr/carrieres' }}
+    ctaSecondary={{ label: 'Candidature spontanée', href: '/fr/carrieres#spontanee' }}
+    variant="heal"
+    icon="userPlus"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

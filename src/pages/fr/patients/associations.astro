@@ -1,0 +1,140 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Associations d'Usagers — Hôpital Saint-Claire" description="Commission des usagers, représentants des usagers, médiateur. Partagez votre expérience à l'Hôpital Saint-Claire.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Associations d'Usagers"
+    subtitle="Votre voix compte — la Commission des Usagers veille sur la qualité de votre prise en charge"
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <!-- CDU information -->
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-4">La Commission des Usagers (CDU)</h2>
+          <div className="space-y-4 text-body-lg text-ink-muted leading-relaxed mb-8">
+            <p>
+              La CDU veille au respect des droits des usagers et contribue à l'amélioration de la qualité
+              de l'accueil et de la prise en charge. Elle est composée de représentants des usagers issus
+              d'associations agréées, de médecins, de soignants et de la direction.
+            </p>
+            <p>
+              Toute personne admise à l'hôpital, ou son entourage, peut saisir la CDU pour toute question
+              relative à la qualité de la prise en charge, au respect des droits ou au fonctionnement de l'établissement.
+            </p>
+          </div>
+          <div className="bg-heal-light/50 rounded-2xl p-6">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-3">Membres de la Commission</h3>
+            <ul className="space-y-2 text-body-sm text-ink">
+              <li className="flex items-center gap-2"><icons.user className="w-4 h-4 text-heal" /> 2 représentants des usagers (associations agréées)</li>
+              <li className="flex items-center gap-2"><icons.stethoscope className="w-4 h-4 text-heal" /> 1 médecin (CME)</li>
+              <li className="flex items-center gap-2"><icons.fileText className="w-4 h-4 text-heal" /> 1 cadre soignant</li>
+              <li className="flex items-center gap-2"><icons.building className="w-4 h-4 text-heal" /> Direction & présidents de secteurs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <!-- Saisine -->
+          <div className="bg-surface rounded-2xl shadow-card p-6">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-4 flex items-center gap-2">
+              <icons.fileText className="w-6 h-6 text-heal" />
+              Comment saisir la CDU ?
+            </h3>
+            <ol className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-heal-light text-heal font-semibold flex items-center justify-center text-body-sm">1</span>
+                <div>
+                  <p className="font-medium text-body-sm text-ink">Rédigez votre demande</p>
+                  <p className="text-body-sm text-ink-muted">Exposez clairement les faits, les dates et votre attente.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-heal-light text-heal font-semibold flex items-center justify-center text-body-sm">2</span>
+                <div>
+                  <p className="font-medium text-body-sm text-ink">Adressez votre courrier</p>
+                  <p className="text-body-sm text-ink-muted">Par courrier, par email, via le formulaire contact ou déposé au bureau des admissions.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-heal-light text-heal font-semibold flex items-center justify-center text-body-sm">3</span>
+                <div>
+                  <p className="font-medium text-body-sm text-ink">Recevez une réponse</p>
+                  <p className="text-body-sm text-ink-muted">La CDU se réunit mensuellement, réponse écrite sous 30 jours.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Médiateur -->
+          <div className="bg-surface rounded-2xl shadow-card p-6">
+            <h3 className="font-display font-semibold text-heading-md text-ink mb-4 flex items-center gap-2">
+              <icons.scale className="w-6 h-6 text-heal" />
+              Le Médiateur de l'Hôpital
+            </h3>
+            <p className="text-body-sm text-ink-muted mb-4">
+              Personne de confiance, indépendante et neutre, le médiateur écoute, informe et facilite le dialogue.
+              Sa médiation est gratuite et confidentielle.
+            </p>
+            <div className="space-y-2 text-body-sm">
+              <p className="flex items-center gap-2"><icons.phone className="w-4 h-4 text-heal" /> 01 23 45 67 40 (messagerie)</p>
+              <p className="flex items-center gap-2"><icons.mail className="w-4 h-4 text-heal" /> mediateur@saint-claire.fr</p>
+              <p className="flex items-center gap-2"><icons.mapPin className="w-4 h-4 text-heal" /> Bureau relations usagers — RDC, bâtiment A</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Associations partenaires -->
+  <section className="py-16 lg:py-20 bg-cloud/50">
+    <div className="container-main">
+      <header className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="font-display font-bold text-heading-xl text-ink mb-4">Nos Associations Partenaires</h2>
+        <p className="text-body-lg text-ink-muted">Des associations de patients présentes au sein de l'établissement</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: 'France Alzheimer', domain: 'Maladie d\'Alzheimer', desc: 'Accueil, info et soutien des familles de patients atteints de troubles cognitifs.', site: 'francealzheimer.org' },
+          { name: 'La Ligue contre le Cancer', domain: 'Cancérologie', desc: 'Soutien psychologique, soins de support et recherche contre le cancer.', site: 'ligue-cancer.net' },
+          { name: 'AIDES', domain: 'VIH & Santé sexuelle', desc: 'Prévention, dépistage et accompagnement des personnes vivant avec le VIH.', site: 'aides.org' },
+          { name: 'France Parkinson', domain: 'Maladie de Parkinson', desc: 'Information, accompagnement des patients et proches, groupes de parole.', site: 'franceparkinson.fr' },
+          { name: 'Fédération Diabète', domain: 'Diabète', desc: 'Éducation thérapeutique, prévention et soutien des personnes diabétiques.', site: 'federationdesdiabetiques.org' },
+          { name: 'Somaticare', domain: 'Endométriose', desc: 'Soutien, information et visibilité de cette maladie encore trop peu connue.', site: 'somaticare.fr' },
+        ].map((asso, index) => (
+          <div key={asso.name} className="bg-surface rounded-2xl shadow-card p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-normal" style={{ animationDelay: `${index * 60}ms` }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(0, 163, 161, 0.1)' }}>
+              <icons.heartHandshake className="w-6 h-6 text-heal" />
+            </div>
+            <h3 className="font-semibold text-heading-sm text-ink mb-1">{asso.name}</h3>
+            <p className="text-body-sm text-heal font-medium mb-2">{asso.domain}</p>
+            <p className="text-body-sm text-ink-muted mb-3">{asso.desc}</p>
+            <span className="text-caption text-ink-muted">{asso.site}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Vous souhaitez partager votre expérience ?"
+    description="Votre avis nous aide à améliorer en continu la qualité de nos soins et de notre accueil."
+    ctaPrimary={{ label: 'Donner mon avis', href: '/fr/contact?subject=reclamation' }}
+    ctaSecondary={{ label: 'Voir les enquêtes de satisfaction', href: '/fr/a-propos/qualite' }}
+    variant="heal"
+    icon="users"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>

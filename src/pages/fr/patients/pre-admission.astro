@@ -1,0 +1,367 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NavBar, Footer, Hero } from '@/components/layout';
+import { CTABanner } from '@/components/features';
+import { icons } from '@/components/ui/Icons';
+---
+
+<BaseLayout title="Pré-Admission en Ligne — Hôpital Saint-Claire" description="Pré-admission en ligne Hôpital Saint-Claire : remplissez votre dossier administratif avant votre venue. Gain de temps garanti.">
+  <NavBar currentLocale="fr" slot="header" />
+
+  <Hero
+    title="Pré-Admission en Ligne"
+    subtitle="Complétez votre dossier administratif depuis chez vous en moins de 10 minutes. Gain de temps garanti à l'arrivée."
+    ctaPrimary={{ label: '', href: '' }}
+    ctaSecondary={{ label: '', href: '' }}
+  />
+
+  <section className="py-16 lg:py-20 bg-snow">
+    <div className="container-main">
+      <div className="max-w-2xl mx-auto">
+        <!-- Progress Steps -->
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-6">
+            {[
+              { step: 1, label: 'Identité', completed: false },
+              { step: 2, label: 'Couverture', completed: false },
+              { step: 3, label: 'Médical', completed: false },
+              { step: 4, label: 'Confirmation', completed: false },
+            ].map((s, i) => (
+              <div key={s.label} className="flex flex-col items-center relative">
+                {i < 3 && <div className="absolute top-6 left-1/2 w-full h-1 bg-cloud z-0" />}
+                <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 border-cloud bg-snow transition-colors">
+                  {s.step}
+                </div>
+                <span className="mt-2 text-caption text-ink-muted text-center w-24">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="preadmission-form" className="bg-surface rounded-2xl shadow-elevated p-6 lg:p-10 space-y-8" noValidate>
+          <!-- Step 1: Identité -->
+          <fieldset id="step-1" className="space-y-6">
+            <legend className="font-display font-semibold text-heading-lg text-ink mb-2">1. Identité du patient</legend>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="civility" className="block text-label text-ink mb-2 font-medium">Civilité *</label>
+                <select id="civility" name="civility" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none appearance-none bg-no-repeat bg-right-3 bg-center pr-10">
+                  <option value="">Choisir</option>
+                  <option value="M">Monsieur</option>
+                  <option value="MME">Madame</option>
+                  <option value="MLLE">Mademoiselle</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="lastname" className="block text-label text-ink mb-2 font-medium">Nom de famille *</label>
+                <input type="text" id="lastname" name="lastname" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="firstname" className="block text-label text-ink mb-2 font-medium">Prénom(s) *</label>
+                <input type="text" id="firstname" name="firstname" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div>
+                <label htmlFor="birthname" className="block text-label text-ink mb-2 font-medium">Nom de naissance</label>
+                <input type="text" id="birthname" name="birthname" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div>
+                <label htmlFor="birthdate" className="block text-label text-ink mb-2 font-medium">Date de naissance *</label>
+                <input type="date" id="birthdate" name="birthdate" required max={new Date().toISOString().split('T')[0]} className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div>
+                <label htmlFor="birthplace" className="block text-label text-ink mb-2 font-medium">Lieu de naissance *</label>
+                <input type="text" id="birthplace" name="birthplace" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div>
+                <label htmlFor="nir" className="block text-label text-ink mb-2 font-medium">N° Sécurité Sociale (NIR) *</label>
+                <input type="text" id="nir" name="nir" required pattern="[0-9]{15}" placeholder="15 chiffres" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Step 2: Couverture -->
+          <fieldset id="step-2" className="space-y-6 hidden">
+            <legend className="font-display font-semibold text-heading-lg text-ink mb-2">2. Couverture sociale</legend>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="civilite" className="block text-label text-ink mb-2 font-medium">Régime principal *</label>
+                <select id="regime" name="regime" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none appearance-none bg-no-repeat bg-right-3 bg-center pr-10">
+                  <option value="">Choisir</option>
+                  <option value="assurance-maladie">Assurance Maladie (CPAM)</option>
+                  <option value="mgen">MGEN</option>
+                  <option value="msa">MSA</option>
+                  <option value="autre">Autre régime</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="cmu" className="block text-label text-ink mb-2 font-medium">Couverture complémentaire *</label>
+                <select id="cmu" name="cmu" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none appearance-none bg-no-repeat bg-right-3 bg-center pr-10">
+                  <option value="">Choisir</option>
+                  <option value="mutuelle">Mutuelle / Complémentaire</option>
+                  <option value="cmu-c">CMU-C</option>
+                  <option value="ame">AME</option>
+                  <option value="acs">ACS</option>
+                  <option value="aucune">Aucune</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="mutuelle-fields" className="hidden space-y-6">
+              <div>
+                <label htmlFor="mutuelle-name" className="block text-label text-ink mb-2 font-medium">Nom de la mutuelle</label>
+                <input type="text" id="mutuelle-name" name="mutuelleName" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="mutuelle-number" className="block text-label text-ink mb-2 font-medium">N° adhérent</label>
+                  <input type="text" id="mutuelle-number" name="mutuelleNumber" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+                </div>
+                <div>
+                  <label htmlFor="mutuelle-validity" className="block text-label text-ink mb-2 font-medium">Validité jusqu'au</label>
+                  <input type="date" id="mutuelle-validity" name="mutuelleValidity" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-heal-light/50 rounded-xl p-4">
+              <p className="text-body-sm text-ink">Pensez à apporter : carte Vitale, attestation de droits (< 1 an), carte mutuelle, CMU-C/AME/ACS si concerné.</p>
+            </div>
+          </fieldset>
+
+          <!-- Step 3: Médical -->
+          <fieldset id="step-3" className="space-y-6 hidden">
+            <legend className="font-display font-semibold text-heading-lg text-ink mb-2">3. Informations médicales</legend>
+
+            <div>
+              <label htmlFor="doctor" className="block text-label text-ink mb-2 font-medium">Médecin traitant</label>
+              <input type="text" id="doctor" name="doctor" placeholder="Dr Nom Prénom" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+
+            <div>
+              <label htmlFor="referring" className="block text-label text-ink mb-2 font-medium">Médecin adressant (si différent)</label>
+              <input type="text" id="referring" name="referring" placeholder="Dr Nom Prénom — Spécialité" className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+            </div>
+
+            <div>
+              <label htmlFor="reason" className="block text-label text-ink mb-2 font-medium">Motif de l'hospitalisation / consultation *</label>
+              <textarea id="reason" name="reason" rows={3} required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none resize-y"></textarea>
+            </div>
+
+            <div>
+              <label htmlFor="allergies" className="block text-label text-ink mb-2 font-medium">Allergies connues</label>
+              <textarea id="allergies" name="allergies" rows={2} placeholder="Médicaments, latex, iode, aliments..." className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none resize-y"></textarea>
+            </div>
+
+            <div>
+              <label htmlFor="treatments" className="block text-label text-ink mb-2 font-medium">Traitements en cours</label>
+              <textarea id="treatments" name="treatments" rows={2} placeholder="Médicaments, posologie..." className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none resize-y"></textarea>
+            </div>
+
+            <div>
+              <label htmlFor="person-to-contact" className="block text-label text-ink mb-2 font-medium">Personne à prévenir *</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" id="contact-name" name="contactName" placeholder="Nom Prénom" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+                <input type="tel" id="contact-phone" name="contactPhone" placeholder="Téléphone" required className="w-full px-4 py-3 text-body bg-snow border border-cloud rounded-lg focus:border-heal focus:ring-2 focus:ring-heal/20 outline-none" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Step 4: Confirmation -->
+          <fieldset id="step-4" className="space-y-6 hidden">
+            <legend className="font-display font-semibold text-heading-lg text-ink mb-2">4. Vérification & Envoi</legend>
+
+            <div id="summary" className="bg-snow rounded-xl p-5 border border-cloud"></div>
+
+            <div className="space-y-4">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="consent" required className="mt-1 w-5 h-5 rounded border-cloud text-heal focus:ring-heal" />
+                <span className="text-body-sm text-ink-muted">
+                  J'atteste de l'exactitude des informations saisies et autorise leur traitement pour ma prise en charge. <a href="/fr/confidentialite" className="text-heal hover:underline">Politique de confidentialité</a>
+                </span>
+              </label>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="newsletter" className="mt-1 w-5 h-5 rounded border-cloud text-heal focus:ring-heal" />
+                <span className="text-body-sm text-ink-muted">Je souhaite recevoir les actualités de l'hôpital par email (optionnel)</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Navigation -->
+          <div className="flex items-center justify-between pt-4 border-t border-cloud">
+            <button type="button" id="btn-prev" className="hidden inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-ink border-2 border-ink rounded-xl hover:bg-ink hover:text-snow transition-colors">
+              <icons.chevronLeft className="w-5 h-5" />
+              Précédent
+            </button>
+            <div className="flex items-center gap-4">
+              <button type="button" id="btn-next" className="inline-flex items-center gap-2 px-8 py-3 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+                Suivant
+                <icons.chevronRight className="w-5 h-5" />
+              </button>
+              <button type="submit" id="btn-submit" className="hidden inline-flex items-center gap-2 px-8 py-3 text-label font-medium text-snow bg-heal rounded-xl hover:bg-heal-hover transition-colors">
+                Envoyer ma pré-admission
+                <icons.check className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success State -->
+        <div id="success-state" className="hidden bg-surface rounded-2xl shadow-elevated p-8 lg:p-12 text-center animate-fade-in">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 mb-6">
+            <svg className="w-10 h-10 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h2 className="font-display font-bold text-heading-xl text-ink mb-3">Pré-Admission Envoyée !</h2>
+          <p className="text-body-lg text-ink-muted mb-6 max-w-lg mx-auto">
+            Votre dossier a été transmis à notre service des admissions. Vous recevrez une confirmation par SMS et email sous 24h.
+          </p>
+          <div className="bg-cloud rounded-xl p-6 mb-8 max-w-md mx-auto text-left">
+            <h3 className="text-label font-medium text-ink mb-4 uppercase tracking-wider">Récapitulatif</h3>
+            <dl id="success-summary" className="space-y-3 text-body-sm"></dl>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/fr/" className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-ink border-2 border-ink rounded-xl hover:bg-ink hover:text-snow transition-colors">
+              <icons.home className="w-5 h-5" />
+              Retour à l'accueil
+            </a>
+            <a href="/fr/patients/admission" className="inline-flex items-center gap-2 px-6 py-3 text-label font-medium text-heal hover:text-heal-hover transition-colors">
+              Préparer mon arrivée
+              <icons.arrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Besoin d'aide pour la pré-admission ?"
+    description="Notre équipe admissions vous guide par téléphone du lundi au vendredi, 8h-18h."
+    ctaPrimary={{ label: 'Nous appeler', href: 'tel:0123456789' }}
+    ctaSecondary={{ label: 'Guide pré-admission (PDF)', href: '/guide-preadmission.pdf' }}
+    variant="heal"
+    icon="phone"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script is:inline>
+  const steps = [1, 2, 3, 4];
+  let currentStep = 1;
+
+  const form = document.getElementById('preadmission-form');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const btnSubmit = document.getElementById('btn-submit');
+  const successState = document.getElementById('success-state');
+  const summaryDiv = document.getElementById('summary');
+  const successSummary = document.getElementById('success-summary');
+  const regimeSelect = document.getElementById('regime');
+  const mutuelleFields = document.getElementById('mutuelle-fields');
+
+  function showStep(step) {
+    steps.forEach(s => {
+      const el = document.getElementById(`step-${s}`);
+      if (el) el.classList.toggle('hidden', s !== step);
+    });
+    currentStep = step;
+    updateNav();
+    updateProgress();
+  }
+
+  function updateNav() {
+    btnPrev.classList.toggle('hidden', currentStep === 1);
+    btnNext.classList.toggle('hidden', currentStep === 4);
+    btnSubmit.classList.toggle('hidden', currentStep !== 4);
+  }
+
+  function updateProgress() {
+    document.querySelectorAll('[data-step]').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('bg-heal', step <= currentStep);
+      el.classList.toggle('border-heal', step <= currentStep);
+      el.classList.toggle('text-snow', step <= currentStep);
+    });
+  }
+
+  function validateStep(step) {
+    const fields = document.getElementById(`step-${step}`).querySelectorAll('[required]');
+    let valid = true;
+    fields.forEach(field => {
+      if (!field.checkValidity()) {
+        field.reportValidity();
+        valid = false;
+      }
+    });
+    return valid;
+  }
+
+  function buildSummary() {
+    const formData = new FormData(form);
+    let html = '';
+    for (const [key, value] of formData.entries()) {
+      if (value && !['consent', 'newsletter'].includes(key)) {
+        const label = document.querySelector(`label[for="${key}"]`)?.textContent || key;
+        html += `<div class="flex justify-between"><dt class="text-ink-muted">${label.replace('*', '').trim()}</dt><dd class="font-medium text-ink">${value}</dd></div>`;
+      }
+    }
+    return html || '<p class="text-ink-muted">Aucune donnée</p>';
+  }
+
+  function updateSummary() {
+    summaryDiv.innerHTML = buildSummary();
+  }
+
+  // Regime change -> show/hide mutuelle fields
+  regimeSelect.addEventListener('change', () => {
+    if (regimeSelect.value === 'mutuelle') {
+      mutuelleFields.classList.remove('hidden');
+    } else {
+      mutuelleFields.classList.add('hidden');
+    }
+  });
+
+  // Navigation
+  btnNext.addEventListener('click', () => {
+    if (validateStep(currentStep)) {
+      updateSummary();
+      showStep(currentStep + 1);
+    }
+  });
+
+  btnPrev.addEventListener('click', () => {
+    showStep(currentStep - 1);
+  });
+
+  // Submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateStep(4)) return;
+
+    const btn = btnSubmit;
+    btn.disabled = true;
+    btn.innerHTML = '<svg class="w-5 h-5 animate-spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 100" stroke-linecap="round"/></svg> Envoi...';
+
+    // Simulate API call
+    await new Promise(r => setTimeout(r, 1000));
+
+    form.classList.add('hidden');
+    successState.classList.remove('hidden');
+    successSummary.innerHTML = buildSummary();
+  });
+
+  // Init
+  showStep(1);
+</script>

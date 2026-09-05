@@ -1,0 +1,21 @@
+{
+  "name": "Hôpital Saint-Claire",
+  "short_name": "St-Claire",
+  "description": "Hôpital privé à but non lucratif depuis 1923 — L'excellence médicale au cœur de vous",
+  "start_url": "/fr/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#00A3A1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["healthcare", "medical", "hospital"],
+  "lang": "fr",
+  "dir": "ltr"
+}
