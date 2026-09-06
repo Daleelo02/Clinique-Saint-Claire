@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://hopital-saint-claire.fr',
-  integrations: [react(), tailwind()],
+  integrations: [react()],
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr', 'en', 'ar', 'pt'],
@@ -14,14 +13,5 @@ export default defineConfig({
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
-  },
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler',
-        },
-      },
-    },
   },
 });
