@@ -35,7 +35,7 @@ const alternateLinks = locales.map(l => {
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     {alternateLinks}
-    <link rel="alternate" hreflang="x-default" href={Astro.url.origin}/fr/ />
+    <link rel="alternate" hreflang="x-default" href={Astro.url.origin + '/fr/'} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
